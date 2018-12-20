@@ -130,8 +130,9 @@
 - /:resourceId
 - /:resourceId/edit
 - /:username/:collectionId
-- /:username/edit
+- /:username/edit                https://wireframe.cc/BkjPID
 
 [Consider using res1,col2,user3, etc. for clarity]
 
+## Storyboarding
 
