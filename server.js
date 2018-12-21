@@ -79,11 +79,12 @@ res.render("login");
 app.post('/login', (req, res) => {
   getUserByUsername(req.body.username)
   .then((user) => {
-      if (req.body.password === user.password) {
-          res.send("yeah you're cool");
-      } else {
-          res.status(404).send("I don't know what you're talking about");
-      }
+    console.log(user);
+      // if (req.body.password === user.password) {
+      //     res.send("yeah you're cool");
+      // } else {
+      //     res.status(404).send("I don't know what you're talking about");
+      // }
   });
   // if (req.body["username"] == "" || req.body["password"] == ""){
   //   res.status('400');
