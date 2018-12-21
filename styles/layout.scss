@@ -1,7 +1,62 @@
-body {
-  background-color: #EEE;
+body h1 {
+  color: #244751;
+  position: relative;
+  top: 5px;
+  right: 15px;
+}
 
-  h1 {
-    color: #244751;
-  }
+.logo {
+  position: relative;
+  top: 18px;
+  height: 85px;
+}
+
+.plus-button {
+  height: 40px;
+}
+
+.title {
+  position: relative;
+  top: 25px;
+}
+
+.plus-cont {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-bar {
+  width: 300px;
+  height: 20px;
+}
+
+.nav-cred {
+  height: 20px;
+}
+
+.login-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-area {
+  display: flex;
+  justify-content: flex-end;
+}
+.nav-border {
+  margin-bottom: 5px;
+  border-bottom: solid black;
+}
+.nav-bar {
+  height: 25px;
+}
+
+.search-container {
+  margin-top: 5px;
+}
+
+.post-container {
+  border: solid black;
+  height: 400px;
+  margin: 10px 0px 10px 0px;
 }
