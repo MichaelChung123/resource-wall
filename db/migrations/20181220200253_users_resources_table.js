@@ -12,8 +12,8 @@ exports.up = function(knex, Promise) {
         .then(function() {
             return knex.schema.createTable('resources', table => {
                 table.increments();
-                table.integer('users_id');
-                table.foreign('users_id').references('users.id');
+                table.integer('user_id');
+                table.foreign('user_id').references('users.id');
                 table.string('url').notNullable();
                 table.string('title').notNullable();
                 table.string('description').notNullable();

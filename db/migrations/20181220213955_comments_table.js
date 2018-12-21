@@ -4,10 +4,10 @@ exports.up = function(knex) {
         table.increments();
         table.string('comment').notNullable();
         table.date('time_stamp');
-        table.integer('resources_id');
-        table.foreign('resources_id').references('resources.id').onDelete('CASCADE');
-        table.integer('users_id');
-        table.foreign('users_id').references('users.id').onDelete('CASCADE');
+        table.integer('resource_id');
+        table.foreign('resource_id').references('resources.id').onDelete('CASCADE');
+        table.integer('user_id');
+        table.foreign('user_id').references('users.id').onDelete('CASCADE');
     })
 };
 

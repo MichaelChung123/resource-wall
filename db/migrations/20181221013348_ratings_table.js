@@ -4,10 +4,10 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer('rating').notNullable();
     table.date('time_stamp');
-    table.integer('resources_id');
-    table.foreign('resources_id').references('resources.id');
-    table.integer('users_id');
-    table.foreign('users_id').references('users.id');
+    table.integer('resource_id');
+    table.foreign('resource_id').references('resources.id');
+    table.integer('user_id');
+    table.foreign('user_id').references('users.id');
   })
 };
 
