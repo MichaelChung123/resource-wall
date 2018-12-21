@@ -47,18 +47,23 @@ app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
-const users: knex.select(*).from('users');
-
-function grabId (username) {
-  for (let key in users) {
-    const user = users[key];
-    if (user.username === username) {
-      return user.id;
+function getUserByUsername (username) {
+  return knex.select('*').from('users').where('username', username)
+  .then((err, rows) => {
+    if (err) {
+      console.log("Error: ", err);
+    }  
+    else if (rows.len > 0) {
+      return rows[0];
+    } else {
+      return undefined;
     }
-  }
-};
+  });
+}
 
 app.get("/login", (req, res) => {
+res.render("login");
+  /*
   let templateVars = {
     user: users[req.session.userid],
   }
@@ -67,17 +72,26 @@ app.get("/login", (req, res) => {
   } else{
     res.render("login");
   }
+*/
 });
 
 //Create login
 app.post('/login', (req, res) => {
-  if (req.body["username"] == "" || req.body["password"] == ""){
-    res.status('400');
-    res.send("Please provide a username and password to log in")
-  } else if (checkLogin(req)) {
-    req.session.userid = grabId(req.body.username);
-    res.redirect("/");
-  } else {
-    res.send("Incorrect password or email entered.")
-  }
+  getUserByUsername(req.body.username)
+  .then((user) => {
+      if (req.body.password === user.password) {
+          res.send("yeah you're cool");
+      } else {
+          res.status(404).send("I don't know what you're talking about");
+      }
+  });
+  // if (req.body["username"] == "" || req.body["password"] == ""){
+  //   res.status('400');
+  //   res.send("Please provide a username and password to log in")
+  // } else if (checkLogin(req)) {
+  //   req.session.userid = grabId(req.body.username);
+  //   res.redirect("/");
+  // } else {
+  //   res.send("Incorrect password or email entered.")
+  // }
 });
