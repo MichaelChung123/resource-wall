@@ -46,3 +46,38 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+const users: knex.select(*).from('users');
+
+function grabId (username) {
+  for (let key in users) {
+    const user = users[key];
+    if (user.username === username) {
+      return user.id;
+    }
+  }
+};
+
+app.get("/login", (req, res) => {
+  let templateVars = {
+    user: users[req.session.userid],
+  }
+  if (templateVars.user){
+    res.redirect("/");
+  } else{
+    res.render("login");
+  }
+});
+
+//Create login
+app.post('/login', (req, res) => {
+  if (req.body["username"] == "" || req.body["password"] == ""){
+    res.status('400');
+    res.send("Please provide a username and password to log in")
+  } else if (checkLogin(req)) {
+    req.session.userid = grabId(req.body.username);
+    res.redirect("/");
+  } else {
+    res.send("Incorrect password or email entered.")
+  }
+});
