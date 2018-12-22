@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+
+  </head>
+
+  <body>
+    <h1>Details on Post/resource(comments/likes)</h1>
+    
+    <form id="post-form" method="GET">
+        Title: <input type="text" name="rtitle">
+        <img class="like-button" src='../images/like.png' alt='like' height='20px' width='20px'>     
+
+        <div id="rateYo"></div> <br>
+        URL: <input type="text" name="rurl">
+        <button>rate</button> <br>
+        
+        Comments: <br>
+        <textarea name="rdescription"></textarea> <br><br>
+            <div>   
+                seed data
+            </div>
+        Topic: <input name="rtopic"><br><br>
+        <input type="submit" value="comment">
+      
+    </form>
+  </body>
+</html>
