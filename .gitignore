@@ -2,8 +2,5 @@ node_modules/
 .env
 *.log
 *.sqlite3
-<<<<<<< HEAD
 .DS_Store
-=======
->>>>>>> 1ee6e2cacee0140df44fca09fc9a382053e99a6a
 test.js
