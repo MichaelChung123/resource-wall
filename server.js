@@ -52,6 +52,7 @@ app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/collections", collectionsRoutes(knex));
 app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
 
+
 // Home page
 app.get("/", (req, res) => {
   let templateVars = {
@@ -64,6 +65,20 @@ app.post("/logout", (req, res) => {
   req.session = null;
   res.redirect("/");
 });
+
+
+// Get username's collection page
+
+app.get("/:username/:collectionname", (req, res) => {
+  let templateVars = {
+    user: req.session.userid,
+    userid: req.params.userid,
+    collection: req.params.collectionname
+  }
+  res.render("usercollection", templateVars);
+  // console.log("Template vars: ", templateVars);
+});
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
