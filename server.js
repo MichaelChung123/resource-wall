@@ -79,7 +79,7 @@ app.post('/', (req, res) => {
       req.session.userid = value;
       res.send("we got to the page!");
     } else{
-      console.log("user didnt match");
+      res.send("Incorrect login. Try again.");
     }
   })
 });
