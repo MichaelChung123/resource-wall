@@ -107,6 +107,7 @@
 # Tech Choices
 - Moment.js
 - Rate Yo! (http://rateyo.fundoocode.ninja/)
+- Cookie Session
 
 # Deployment
 - Heroku
@@ -130,7 +131,8 @@
 - /:resourceId
 - /:resourceId/edit
 - /:username/:collectionId
-- /:username/edit                https://wireframe.cc/BkjPID
+- /:username/edit
+- /:username/createCollection
 
 [Consider using res1,col2,user3, etc. for clarity]
 
