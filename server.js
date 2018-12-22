@@ -8,11 +8,18 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
+const cookieSession = require('cookie-session')
+
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['userid'],
+}))
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -52,12 +59,8 @@ var promise1 = new Promise(function(resolve, reject) {
   resolve('Success!');
 });
 
-app.get("/login", (req, res) => {
-  res.render("login");
-});
 
 function checkUsername(username){
-  var userId;
   return knex.select("id").from("users").where('username',username)
   .then(function (users){  
     if(users.length>0){
@@ -69,12 +72,12 @@ function checkUsername(username){
   });
 }
 //Create login
-app.post('/login', (req, res) => {
+app.post('/', (req, res) => {
   let result = checkUsername(req.body.username);
   result.then((value)=>{
     if(value > 0){
       req.session.userid = value;
-      res.render(`/${username}`);
+      res.send("we got to the page!");
     } else{
       console.log("user didnt match");
     }
