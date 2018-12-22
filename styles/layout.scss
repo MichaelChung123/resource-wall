@@ -9,6 +9,11 @@ body h1 {
   position: relative;
   top: 18px;
   height: 85px;
+  margin: 10px 10px 10px 10px ;
+}
+.post-avatar {
+  height: 85px;
+  margin: 20px 10px 10px 10px ;
 }
 
 .plus-button {
@@ -60,3 +65,13 @@ body h1 {
   height: 400px;
   margin: 10px 0px 10px 0px;
 } 
+
+.post-title {
+  margin: 10px 10px 10px 10px; 
+}
+
+.desc-container {
+  width: 250px;
+  height: 115px;
+  margin: 10px 10px 10px 10px;
+}
