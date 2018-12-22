@@ -31,10 +31,11 @@
           </div>
 
             <div class='col-sm-7 login-container'>
-              <label>Username: </label>
-              <textarea value='username' class='nav-cred'></textarea>
-              <label>Password: </label>
-              <textarea value='password' class='nav-cred'></textarea>
+              <form action="/" method="POST" >
+              <label for="LoginUsername"><h4>Username</h4></label>
+              <input type="username" name="username" style="width: 300px; height: 20px" required>
+              <input type="submit" value="Login">
+              </form>
             </div>
         </div>
 
