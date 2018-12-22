@@ -54,7 +54,15 @@ app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  let templateVars = {
+    user: req.session.userid
+  };
+  res.render("index", templateVars);
+});
+
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/");
 });
 
 app.listen(PORT, () => {
@@ -84,7 +92,7 @@ app.post('/', (req, res) => {
   result.then((value)=>{
     if(value > 0){
       req.session.userid = value;
-      res.send("we got to the page!");
+      res.redirect("/");
     } else{
       res.send("Incorrect login. Try again.");
     }
