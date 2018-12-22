@@ -47,52 +47,36 @@ app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
-function getUserByUsername (username) {
-  return knex.select('*').from('users').where('username', username)
-  .then((err, rows) => {
-    if (err) {
-      console.log("Error: ", err);
-    }  
-    else if (rows.len > 0) {
-      return rows[0];
-    } else {
-      return undefined;
-    }
-  });
-}
 
-app.get("/login", (req, res) => {
-res.render("login");
-  /*
-  let templateVars = {
-    user: users[req.session.userid],
-  }
-  if (templateVars.user){
-    res.redirect("/");
-  } else{
-    res.render("login");
-  }
-*/
+var promise1 = new Promise(function(resolve, reject) {
+  resolve('Success!');
 });
 
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+function checkUsername(username){
+  var userId;
+  return knex.select("id").from("users").where('username',username)
+  .then(function (users){  
+    if(users.length>0){
+      return Promise.resolve(users[0].id);
+    } else {
+      return Promise.resolve(0)
+    }
+    console.log("its after knex query");
+  });
+}
 //Create login
 app.post('/login', (req, res) => {
-  getUserByUsername(req.body.username)
-  .then((user) => {
-    console.log(user);
-      // if (req.body.password === user.password) {
-      //     res.send("yeah you're cool");
-      // } else {
-      //     res.status(404).send("I don't know what you're talking about");
-      // }
-  });
-  // if (req.body["username"] == "" || req.body["password"] == ""){
-  //   res.status('400');
-  //   res.send("Please provide a username and password to log in")
-  // } else if (checkLogin(req)) {
-  //   req.session.userid = grabId(req.body.username);
-  //   res.redirect("/");
-  // } else {
-  //   res.send("Incorrect password or email entered.")
-  // }
+  let result = checkUsername(req.body.username);
+  result.then((value)=>{
+    if(value > 0){
+      req.session.userid = value;
+      res.render(`/${username}`);
+    } else{
+      console.log("user didnt match");
+    }
+  })
 });
