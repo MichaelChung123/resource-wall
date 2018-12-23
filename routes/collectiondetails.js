@@ -9,8 +9,8 @@ module.exports = (knex) => {
     knex
       .select("*")
       .from("collection_details")
-      .join('collections', 'collections.id')
-      .join('resources', 'resources.id')
+      .join('resources', 'collection_details.resource_id', 'resources.id')
+      .join('collections', 'collection_details.collection_id', 'collections.id')
       .then((results) => {
         res.json(results);
     });

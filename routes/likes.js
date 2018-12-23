@@ -8,13 +8,11 @@ module.exports = (knex) => {
   router.get("/", (req, res) => {
     knex
       .select("*")
-      .from("comments")
+      .from("likes")
       .then((results) => {
         res.json(results);
     });
   });
 
   return router;
-
 }
-
