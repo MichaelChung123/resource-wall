@@ -74,17 +74,22 @@ app.post("/logout", (req, res) => {
 });
 
 // Post page + inserting data to db
-app.get("/post/1", (req, res) => {
-  res.render("urls_post");
-  
+app.get("/:userid/post", (req, res) => {
+  const sessionId = req.session.userid;
+  const userId = req.params.userid;
+  if (userId == sessionId){
+    res.render("urls_post");
+  } else {
+    res.status(400).end();
+  }
 });
 
-app.post("/post/1", (req, res) => {
-  const userId = 1;     //request.params.id OR from auth
+app.post("/:userid/post", (req, res) => {
+  const userId = req.session.userid; 
   const url = req.body.rurl;
   const title = req.body.rtitle;
   const description = req.body.rdescription;
-  const topic = req.body.rtopic
+  const topic = req.body.rtopic;
   if (!url || !title || !description || !topic) {
     res.status(400).end();
   } else {
@@ -96,18 +101,15 @@ app.post("/post/1", (req, res) => {
       description: req.body.rdescription,
       topic: req.body.rtopic
     })
-    .then((result) => {
+    .then(() => {
       res.redirect('/')
     })
   }  
 })
 
 // resource details page
-app.get("/:resourceid", (req, res) => {
-  const userId = req.params;
-  const templateVars = req.params;
-    
-  res.render('urls_show_resources', templateVars)
+app.get("/:resourceid", (req, res) => {    
+  res.render('urls_show_resources')
 })
 
 app.post("/:resourceid", (req, res) => {
@@ -119,7 +121,7 @@ app.post("/:resourceid", (req, res) => {
     user_id: userId,
     resource_id: resourceid,
     comment: com,
-    time_stamp: '2012-01-01'
+    time_stamp: '2019-07-01'
   })
   .then((result) => {
     res.redirect('/' + resourceid);
