@@ -76,7 +76,6 @@ app.get("/:username/:collectionname", (req, res) => {
     collection: req.params.collectionname
   }
   res.render("usercollection", templateVars);
-  // console.log("Template vars: ", templateVars);
 });
 
 
