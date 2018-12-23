@@ -26,6 +26,11 @@ const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
 const collectionsRoutes = require("./routes/collections");
 const collectiondetailsRoutes = require("./routes/collectiondetails");
+const commentsRoutes = require("./routes/comments");
+const resourceTitle = require("./routes/resources-title");
+const resourceTopic = require("./routes/resources-topic");
+const resourceUrl = require("./routes/resources-url");
+
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -50,6 +55,10 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/collections", collectionsRoutes(knex));
 app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
+app.use("/api/comments", commentsRoutes(knex));
+app.use("/api/resources-title", resourceTitle(knex));
+app.use("/api/resources-topic", resourceTopic(knex));
+app.use("/api/resources-url", resourceUrl(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -93,10 +102,30 @@ app.post("/post/1", (req, res) => {
   }  
 })
 
-app.get("/resourceid", (req, res) => {
-  // const userId; // hard coded cookie
+// resource details page
+app.get("/:resourceid", (req, res) => {
+  const userId = req.params;
+  const templateVars = req.params;
+    
+  res.render('urls_show_resources', templateVars)
+})
+
+app.post("/:resourceid", (req, res) => {
+  const userId = req.session.userid;
+  const com = req.body.rcomment;
+  const resourceid = req.params.resourceid;
+  knex('comments')
+  .insert({
+    user_id: userId,
+    resource_id: resourceid,
+    comment: com,
+    time_stamp: '2012-01-01'
+  })
+  .then((result) => {
+    res.redirect('/' + resourceid);
+  })
   
-  res.render('urls_show_resources')
+
 })
 
 
