@@ -70,12 +70,7 @@ app.post("/logout", (req, res) => {
 // Get username's collection page
 
 app.get("/:username/:collectionname", (req, res) => {
-  let templateVars = {
-    user: req.session.userid,
-    userid: req.params.userid,
-    collection: req.params.collectionname
-  }
-  res.render("usercollection", templateVars);
+  res.render("usercollection");
 });
 
 
