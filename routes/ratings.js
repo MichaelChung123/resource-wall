@@ -8,7 +8,7 @@ module.exports = (knex) => {
   router.get("/", (req, res) => {
     knex
       .select("*")
-      .from("resources")
+      .from("ratings")
       .then((results) => {
         res.json(results);
     });
@@ -16,4 +16,3 @@ module.exports = (knex) => {
 
   return router;
 }
-
