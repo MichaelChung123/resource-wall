@@ -60,7 +60,6 @@ function grabUserId (username) {
   }
 }
 
-f
 
 function getCollectionId (collectionname, userid) {
   for (let key in collections) {
@@ -69,30 +68,6 @@ function getCollectionId (collectionname, userid) {
       return collection.id;
     }
   }
-}
-
-function postsInCollection (collectionId) {
-  let result = {}; 
-  for (let posts in collection_details) {
-    if (collection_details[posts].id === collectionId) {
-      let temp = {
-
-      }
-    }
-  }
-
-
-  // let resultObject = {};
-  // for (let url in urlDatabase) {
-  //   if (urlDatabase[url].userid === id) {
-  //     let temp = {
-  //       shortURL: url,
-  //       longURL: urlDatabase[url].longurl
-  //     }
-  //     resultObject[url] = temp;
-  //   }
-  // }
-  // return resultObject;
 }
 
 //Creating collection page
