@@ -8,14 +8,13 @@ module.exports = (knex) => {
   router.get("/", (req, res) => {
     knex
       .select("*")
-      .from("users")
+      .from("collection_details")
+      .join('resources', 'collection_details.resource_id', 'resources.id')
+      .join('collections', 'collection_details.collection_id', 'collections.id')
       .then((results) => {
         res.json(results);
     });
   });
 
   return router;
-
 }
-
-
