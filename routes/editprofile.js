@@ -6,9 +6,11 @@ const router  = express.Router();
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
+    const referer = req.headers.referer.split('/');
     knex
       .select("*")
-      .from("comments")
+      .from("users")
+      .where("username", referer[3])
       .then((results) => {
         res.json(results);
     });
@@ -17,4 +19,5 @@ module.exports = (knex) => {
   return router;
 
 }
+
 
