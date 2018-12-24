@@ -27,16 +27,16 @@
 <body>
     <main class="profileinfo">
         <div id="profile">
-            <form id="updateprofile" action="/" method="POST" Content-Type="application/x-www-form-urlencoded">
+            <form id="updateprofile" action="/:username/editprofile" method="POST" Content-Type="application/x-www-form-urlencoded">
                 <label class="name"><h3>Name:</h3></label>
                 </br>
                 <label class="username"><h3>Username:</h3></label>
                 </br>
                 <label><h3>Password:</h3></label>
             </br>
-                <input type="password" name="updatepassword">
+                <input type="updatepassword" name="updatepassword">
                 </br>
-                <label class="photo"><h3>Photo:</h3></label>
+                <label class="photo"><h3>Photo URL:</h3></label>
                 </br>
                 </br>
                 <input type="submit" value="Update">

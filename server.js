@@ -70,10 +70,32 @@ app.get("/", (req, res) => {
 });
 
 app.get("/:username/editprofile", (req,res) => {
-  let templateVars = {
-    user: req.session.userid
-  };
-  res.render("editprofile", templateVars);
+  let result = checkUsername(req.params.username);
+  result.then((value)=>{
+    if(value === req.session.userid){
+      let templateVars = {
+      user: req.session.userid
+      };
+      res.render("editprofile", templateVars);
+    } else{
+      res.send("This is not your profile.");
+    }
+  });
+});
+
+app.post("/:username/editprofile", (req,res) => {
+  knex('users')
+  .where('id', req.session.userid)
+  .update({
+    name: req.body.updatename,
+    username: req.body.updateusername,
+    password: req.body.updatepassword,
+    photo: req.body.updatephoto
+  })
+  .then((result) => {
+    console.log("Profile updated")
+    res.redirect('/:username')
+  })
 })
 
 app.post("/logout", (req, res) => {
