@@ -60,11 +60,17 @@ body h1 {
   margin-top: 5px;
 }
 
+//container for individual posts
 .post-container {
   border: solid black;
   height: 400px;
   margin: 10px 0px 10px 0px;
+  border-radius: 10px 10px 10px 10px;
 } 
+
+.post-container-mouseenter {
+  background-color:black;
+}
 
 .post-title {
   margin: 10px 10px 10px 10px; 
@@ -82,4 +88,9 @@ body h1 {
   position: relative;
   top: 50px;
   margin: 10px 10px 10px 10px;
+}
+
+.icon-container{ 
+  display: flex;
+  justify-content: flex-end;
 }

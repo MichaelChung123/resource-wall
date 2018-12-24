@@ -24,13 +24,9 @@ app.use(cookieSession({
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
-<<<<<<< HEAD
-const indexDataRoutes = require("./routes/index-data");
-=======
 const collectionsRoutes = require("./routes/collections");
 const collectiondetailsRoutes = require("./routes/collectiondetails");
-
->>>>>>> 293dbe4eaf75f0c4b9a8cc49fdd87eba9783eab7
+const indexDataRoutes = require("./routes/index-data");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -53,12 +49,9 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
-<<<<<<< HEAD
-app.use("/api/index-data", indexDataRoutes(knex));
-=======
 app.use("/api/collections", collectionsRoutes(knex));
 app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
->>>>>>> 293dbe4eaf75f0c4b9a8cc49fdd87eba9783eab7
+app.use("/api/index-data", indexDataRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -81,7 +74,6 @@ app.listen(PORT, () => {
 var promise1 = new Promise(function(resolve, reject) {
   resolve('Success!');
 });
-
 
 function checkUsername(username){
   return knex.select("id").from("users").where('username',username)

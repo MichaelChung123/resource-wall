@@ -9,6 +9,12 @@ body h1 {
   position: relative;
   top: 18px;
   height: 85px;
+  margin: 10px 10px 10px 10px;
+}
+
+.post-avatar {
+  height: 85px;
+  margin: 20px 10px 10px 10px;
 }
 
 .plus-button {
@@ -61,4 +67,32 @@ body h1 {
   border: solid black;
   height: 400px;
   margin: 10px 0px 10px 0px;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.post-container-mouseenter {
+  background-color: black;
+}
+
+.post-title {
+  margin: 10px 10px 10px 10px;
+}
+
+.desc-container {
+  width: 250px;
+  height: 115px;
+  margin: 10px 10px 10px 10px;
+}
+
+.post-footer {
+  border-top: solid black;
+  height: 50px;
+  position: relative;
+  top: 50px;
+  margin: 10px 10px 10px 10px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: flex-end;
 }
