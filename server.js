@@ -26,15 +26,12 @@ const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
 const collectionsRoutes = require("./routes/collections");
 const collectiondetailsRoutes = require("./routes/collectiondetails");
-<<<<<<< HEAD
 const userscollectionRoutes = require("./routes/userscollection");
-=======
 const commentsRoutes = require("./routes/comments");
 const resourceTitle = require("./routes/resources-title");
 const resourceTopic = require("./routes/resources-topic");
 const resourceUrl = require("./routes/resources-url");
 const editProfileRoutes = require("./routes/editprofile");
->>>>>>> 921c1ee40803dcaa6af5daefb2f96f70a9f2f698
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -59,16 +56,12 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/collections", collectionsRoutes(knex));
 app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
-<<<<<<< HEAD
 app.use("/api/userscollection", userscollectionRoutes(knex));
-
-=======
 app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources-title", resourceTitle(knex));
 app.use("/api/resources-topic", resourceTopic(knex));
 app.use("/api/resources-url", resourceUrl(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
->>>>>>> 921c1ee40803dcaa6af5daefb2f96f70a9f2f698
 
 // Home page
 app.get("/", (req, res) => {
@@ -112,7 +105,6 @@ app.post("/logout", (req, res) => {
   res.redirect("/");
 });
 
-<<<<<<< HEAD
 
 // Get username's collection page
 
@@ -123,7 +115,6 @@ app.get("/:username/:collectionname", (req, res) => {
   res.render("usercollection", templateVars);
 });
 
-=======
 // Post page + inserting data to db
 app.get("/:userid/post", (req, res) => {
   const sessionId = req.session.userid;
@@ -182,7 +173,6 @@ app.post("/:resourceid", (req, res) => {
 })
 
 
->>>>>>> 921c1ee40803dcaa6af5daefb2f96f70a9f2f698
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
