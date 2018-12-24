@@ -26,6 +26,11 @@ const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
 const collectionsRoutes = require("./routes/collections");
 const collectiondetailsRoutes = require("./routes/collectiondetails");
+const commentsRoutes = require("./routes/comments");
+const resourceTitle = require("./routes/resources-title");
+const resourceTopic = require("./routes/resources-topic");
+const resourceUrl = require("./routes/resources-url");
+
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -35,7 +40,6 @@ app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
-
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
@@ -51,6 +55,10 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/collections", collectionsRoutes(knex));
 app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
+app.use("/api/comments", commentsRoutes(knex));
+app.use("/api/resources-title", resourceTitle(knex));
+app.use("/api/resources-topic", resourceTopic(knex));
+app.use("/api/resources-url", resourceUrl(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -71,6 +79,65 @@ app.post("/logout", (req, res) => {
   req.session = null;
   res.redirect("/");
 });
+
+// Post page + inserting data to db
+app.get("/:userid/post", (req, res) => {
+  const sessionId = req.session.userid;
+  const userId = req.params.userid;
+  if (userId == sessionId){
+    res.render("urls_post");
+  } else {
+    res.status(400).end();
+  }
+});
+
+app.post("/:userid/post", (req, res) => {
+  const userId = req.session.userid; 
+  const url = req.body.rurl;
+  const title = req.body.rtitle;
+  const description = req.body.rdescription;
+  const topic = req.body.rtopic;
+  if (!url || !title || !description || !topic) {
+    res.status(400).end();
+  } else {
+    knex('resources')
+    .insert({
+      user_id: userId,
+      url: req.body.rurl,
+      title: req.body.rtitle,
+      description: req.body.rdescription,
+      topic: req.body.rtopic
+    })
+    .then(() => {
+      res.redirect('/')
+    })
+  }  
+})
+
+// resource details page
+app.get("/:resourceid", (req, res) => {    
+  res.render('urls_show_resources')
+})
+
+app.post("/:resourceid", (req, res) => {
+  const userId = req.session.userid;
+  const com = req.body.rcomment;
+  const resourceid = req.params.resourceid;
+  knex('comments')
+  .insert({
+    user_id: userId,
+    resource_id: resourceid,
+    comment: com,
+    time_stamp: '2019-07-01'
+  })
+  .then((result) => {
+    res.redirect('/' + resourceid);
+  })
+  
+
+})
+
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
