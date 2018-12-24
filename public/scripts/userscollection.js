@@ -1,7 +1,7 @@
 $(() => {
     $.ajax({
       method: "GET",
-      url: "/api/collectiondetails"
+      url: "/api/userscollection"
     }).done((collectiondetails) => {
       for(details of collectiondetails) {
         const $resource = $("<article>").addClass("resource").appendTo($("#resource"));

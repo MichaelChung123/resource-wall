@@ -26,6 +26,7 @@ const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
 const collectionsRoutes = require("./routes/collections");
 const collectiondetailsRoutes = require("./routes/collectiondetails");
+const userscollectionRoutes = require("./routes/userscollection");
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -51,6 +52,7 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/collections", collectionsRoutes(knex));
 app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
+app.use("/api/userscollection", userscollectionRoutes(knex));
 
 
 // Home page
@@ -70,7 +72,10 @@ app.post("/logout", (req, res) => {
 // Get username's collection page
 
 app.get("/:username/:collectionname", (req, res) => {
-  res.render("usercollection");
+  let templateVars = {
+    user: req.session.userid
+  }
+  res.render("usercollection", templateVars);
 });
 
 
