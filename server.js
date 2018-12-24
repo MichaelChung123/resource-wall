@@ -26,13 +26,14 @@ const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
 const collectionsRoutes = require("./routes/collections");
 const collectiondetailsRoutes = require("./routes/collectiondetails");
+const userscollectionRoutes = require("./routes/userscollection");
 const commentsRoutes = require("./routes/comments");
 const resourceTitle = require("./routes/resources-title");
 const resourceTopic = require("./routes/resources-topic");
 const resourceUrl = require("./routes/resources-url");
 const likes = require("./routes/likes");
 const rates = require("./routes/ratings")
-
+const editProfileRoutes = require("./routes/editprofile");
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -57,12 +58,14 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/collections", collectionsRoutes(knex));
 app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
+app.use("/api/userscollection", userscollectionRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources-title", resourceTitle(knex));
 app.use("/api/resources-topic", resourceTopic(knex));
 app.use("/api/resources-url", resourceUrl(knex));
 app.use("/api/likes", likes(knex));
 app.use("/api/ratings", rates(knex));
+app.use("/api/editprofile", editProfileRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -71,6 +74,35 @@ app.get("/", (req, res) => {
   };
   res.render("index", templateVars);
 });
+
+app.get("/:username/editprofile", (req,res) => {
+  let result = checkUsername(req.params.username);
+  result.then((value)=>{
+    if(value === req.session.userid){
+      let templateVars = {
+      user: req.session.userid
+      };
+      res.render("editprofile", templateVars);
+    } else{
+      res.send("This is not your profile.");
+    }
+  });
+});
+
+app.post("/:username/editprofile", (req,res) => {
+  knex('users')
+  .where('id', req.session.userid)
+  .update({
+    name: req.body.updatename,
+    username: req.body.updateusername,
+    password: req.body.updatepassword,
+    photo: req.body.updatephoto
+  })
+  .then((result) => {
+    console.log("Profile updated")
+    res.redirect('/:username')
+  })
+})
 
 app.post("/logout", (req, res) => {
   req.session = null;
