@@ -60,6 +60,13 @@ app.get("/", (req, res) => {
   res.render("index", templateVars);
 });
 
+app.get("/editprofile", (req,res) => {
+  let templateVars = {
+    user: req.session.userid
+  };
+  res.render("editprofile", templateVars);
+})
+
 app.post("/logout", (req, res) => {
   req.session = null;
   res.redirect("/");
