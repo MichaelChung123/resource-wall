@@ -2,15 +2,6 @@
 
 require('dotenv').config();
 
-<<<<<<< HEAD
-const PORT          = process.env.PORT || 8080;
-const ENV           = process.env.ENV || "development";
-const express       = require("express");
-const bodyParser    = require("body-parser");
-const sass          = require("node-sass-middleware");
-const app           = express();
-const cookieSession = require('cookie-session');
-=======
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
 const express     = require("express");
@@ -18,7 +9,6 @@ const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
 const cookieSession = require('cookie-session')
->>>>>>> 0af4d02925a614daaa21f9096fd5839eb611aae0
 
 
 const knexConfig  = require("./knexfile");
@@ -188,7 +178,6 @@ app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
-<<<<<<< HEAD
 //Check user's info (col) based on info we have (info)
 //Example info = username (from logging in), we need id (col = id)
 function grabUserId (username) {
@@ -241,7 +230,6 @@ app.get("/:username/:collectionname", (req, res) => {
   }
   res.render("collection");
 })
-=======
 
 var promise1 = new Promise(function(resolve, reject) {
   resolve('Success!');
@@ -271,4 +259,3 @@ app.post('/', (req, res) => {
     }
   })
 });
->>>>>>> 0af4d02925a614daaa21f9096fd5839eb611aae0
