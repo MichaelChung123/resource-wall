@@ -1,5 +1,4 @@
 main.profileinfo {
-    background-color: yellow;
     width: 50em;
     height: auto;
     padding: 5em;
@@ -10,7 +9,7 @@ div#profile {
     clear: left;
 }
 
-div#profile .editprofilephoto {
+div#profile img {
     float: left;
     height: 9em;
     width: 9em;
@@ -23,6 +22,6 @@ div#profile form {
 }
 
 div#profile form h3 {
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 

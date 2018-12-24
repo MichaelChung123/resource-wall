@@ -30,7 +30,7 @@ const commentsRoutes = require("./routes/comments");
 const resourceTitle = require("./routes/resources-title");
 const resourceTopic = require("./routes/resources-topic");
 const resourceUrl = require("./routes/resources-url");
-
+const editProfileRoutes = require("./routes/editprofile");
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -59,6 +59,7 @@ app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources-title", resourceTitle(knex));
 app.use("/api/resources-topic", resourceTopic(knex));
 app.use("/api/resources-url", resourceUrl(knex));
+app.use("/api/editprofile", editProfileRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -68,7 +69,7 @@ app.get("/", (req, res) => {
   res.render("index", templateVars);
 });
 
-app.get("/editprofile", (req,res) => {
+app.get("/:username/editprofile", (req,res) => {
   let templateVars = {
     user: req.session.userid
   };

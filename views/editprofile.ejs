@@ -8,11 +8,16 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/styles/editprofile.css" type="text/css" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/editprofile.js"></script>
 
 </head>
@@ -22,19 +27,16 @@
 <body>
     <main class="profileinfo">
         <div id="profile">
-            <img class="editprofilephoto" src="https://ksassets.timeincuk.net/wp/uploads/sites/55/2018/08/justin-timberlake-writes-book-920x584.jpg">
             <form id="updateprofile" action="/" method="POST" Content-Type="application/x-www-form-urlencoded">
-                <label><h3>Name:</h3></label>
-                <input type="name" name="updatename">
+                <label class="name"><h3>Name:</h3></label>
                 </br>
-                <label><h3>Username:</h3></label>
-                <input type="username" name="updateusername">
+                <label class="username"><h3>Username:</h3></label>
                 </br>
                 <label><h3>Password:</h3></label>
+            </br>
                 <input type="password" name="updatepassword">
                 </br>
-                <label><h3>Photo</h3></label>
-                <input type="photo" name="updatephoto">
+                <label class="photo"><h3>Photo:</h3></label>
                 </br>
                 </br>
                 <input type="submit" value="Update">
