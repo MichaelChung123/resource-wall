@@ -86,6 +86,8 @@ app.get("/:username/editprofile", (req,res) => {
 });
 
 app.post("/:username/editprofile", (req,res) => {
+
+  //!!! - Still unable to update user profile. Removes user from users table when updating - !!!
   knex('users')
   .where('id', req.session.userid)
   .update({

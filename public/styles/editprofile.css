@@ -1,4 +1,4 @@
-main.profileinfo {
+/* main.profileinfo {
     width: 50em;
     height: auto;
     padding: 5em;
@@ -9,11 +9,12 @@ div#profile {
     clear: left;
 }
 
-div#profile img {
+.profile-img {
     float: left;
     height: 9em;
     width: 9em;
     border-radius: 4.5em;
+    background-color:red;
 }
 
 
@@ -28,4 +29,24 @@ div#profile form h3 {
 div#profile input {
     width: 15em;
 }
+ */
+.edit-title {
+    margin-bottom: -30px;
+}
+.border {
+    border: none;
+    height: 1px;
+    color: #333;
+    background-color: #333;
+    margin-top: -5px;
+}
+
+ .profile-img {
+     margin: 25px 20px 10px 10px;     
+ }
+
+ .user-data {
+     display: flex;
+     justify-content: flex-start;
+ }
 
