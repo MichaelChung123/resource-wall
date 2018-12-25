@@ -32,7 +32,7 @@ const resourceTitle = require("./routes/resources-title");
 const resourceTopic = require("./routes/resources-topic");
 const resourceUrl = require("./routes/resources-url");
 const editProfileRoutes = require("./routes/editprofile");
-
+const profileRoutes = require("./routes/profile-data");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -62,6 +62,7 @@ app.use("/api/resources-title", resourceTitle(knex));
 app.use("/api/resources-topic", resourceTopic(knex));
 app.use("/api/resources-url", resourceUrl(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
+app.use("/api/profile", profileRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -71,12 +72,28 @@ app.get("/", (req, res) => {
   res.render("index", templateVars);
 });
 
+//Profile Page
+app.get("/:username", (req, res) => {
+  let result = checkUsername(req.params.username);
+
+  result.then((value) => {
+    if(value === req.session.userid) {
+      let templateVars = {
+        user: req.session.userid
+      };
+      res.render("userprofile", templateVars);
+    } else {
+      res.send("Please log in to view your profile.");
+    }
+  });
+});
+
 app.get("/:username/editprofile", (req,res) => {
   let result = checkUsername(req.params.username);
   result.then((value)=>{
     if(value === req.session.userid){
       let templateVars = {
-      user: req.session.userid
+        user: req.session.userid
       };
       res.render("editprofile", templateVars);
     } else{
@@ -175,7 +192,6 @@ app.post("/:resourceid", (req, res) => {
 })
 
 
-
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
@@ -188,7 +204,7 @@ var promise1 = new Promise(function(resolve, reject) {
 
 function checkUsername(username){
   return knex.select("id").from("users").where('username',username)
-  .then(function (users){  
+  .then(function (users){
     if(users.length>0){
       return Promise.resolve(users[0].id);
     } else {
