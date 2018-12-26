@@ -201,6 +201,35 @@ app.post("/:resourceid/rate", (req, res) => {
   })
 });
 
+// Edit page
+app.get("/:resourceid/edit", (req, res) => {
+  const templateVars = {resId: req.params.resourceid};
+  const userId = req.session.userid;
+  
+  res.render("urls_edit", templateVars);
+})
+
+app.post("/:resourceid/edit", (req, res) => {
+  const {etitle, eURL, etopic, edescription} = req.body;
+  const resourceid = req.params.resourceid;
+  knex('resources')
+  .where('resources.id', resourceid)
+  .update({
+    title: etitle,
+    url: eURL,
+    topic: etopic,
+    description: edescription
+  })
+  .then(() => {
+    res.redirect('/' + resourceid);
+  })
+
+})
+
+app.post(":/resourceid/delete", (req, res) => {
+
+})
+
 
 
 app.listen(PORT, () => {
