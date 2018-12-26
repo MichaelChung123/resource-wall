@@ -203,11 +203,23 @@ app.post("/:resourceid/rate", (req, res) => {
 
 // Edit page
 app.get("/:resourceid/edit", (req, res) => {
-  const templateVars = {resId: req.params.resourceid};
   const userId = req.session.userid;
-  
-  res.render("urls_edit", templateVars);
-})
+  const resourceid = req.params.resourceid;
+  const templateVars = {resId: resourceid};
+  knex('resources')
+  .select('id')
+  .where('user_id', userId)
+  .then((r) => {
+    for (let x of r){
+      
+      if (x.id == resourceid) {
+        res.render("urls_edit", templateVars);
+      } else {
+        res.send(`this is not your post`);
+      }
+    }
+  });
+});
 
 app.post("/:resourceid/edit", (req, res) => {
   const {etitle, eURL, etopic, edescription} = req.body;
@@ -226,11 +238,24 @@ app.post("/:resourceid/edit", (req, res) => {
 
 })
 
-app.post(":/resourceid/delete", (req, res) => {
-
-})
-
-
+app.post("/:resourceid/delete", (req, res) => {
+  const resourceid = req.params.resourceid;
+  let comments = knex('comments').where('resource_id', resourceid)
+  .delete()
+  let ratings = knex('ratings').where('resource_id', resourceid)
+  .delete()
+  let likes = knex('likes').where('resource_id', resourceid)
+  .delete()
+  let collection = knex('collection_details').where('resource_id', resourceid)
+  .update({resource_id: null})
+  Promise.all([comments, ratings, likes, collection])
+  .then(() => {
+    return knex('resources').where('id', resourceid).delete()
+  })
+  .then(() => {
+    res.redirect('/')
+  });
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
