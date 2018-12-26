@@ -66,10 +66,11 @@ body h1 {
   height: 400px;
   margin: 10px 0px 10px 0px;
   border-radius: 10px 10px 10px 10px;
+  opacity:0.5;
 } 
 
-.post-container-mouseenter {
-  background-color:black;
+.post-container:hover {
+  opacity: 1;
 }
 
 .post-title {
