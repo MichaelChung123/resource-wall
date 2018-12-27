@@ -225,17 +225,6 @@ app.get("/post", (req, res) => {
   }
 })
 
-// POST resource
-// app.get("/:userid/post", (req, res) => {
-//   const sessionId = req.session.userid;
-//   const userId = req.params.userid;
-//   if (userId == sessionId){
-//     res.render("urls_post");
-//   } else {
-//     res.send("Please log in to post a resource");
-//   }
-// });
-
 app.post("/:userid/post", (req, res) => {
   const userId = req.session.userid; 
   const url = req.body.rurl;
@@ -383,11 +372,6 @@ app.post("/:resourceid/delete", (req, res) => {
     res.redirect('/')
   });
 });
-
-app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
-});
-
 
 var promise1 = new Promise(function(resolve, reject) {
   resolve('Success!');
