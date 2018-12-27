@@ -11,7 +11,7 @@
             <div class='col-sm-7 login-container'>
               <% if (user) { %>
                 <p> You are logged in&nbsp;&nbsp;
-                  <button type="button"><a href="/<%= username %>">View profile</a></button>
+                  <button type="button"><a href="/<%= username %>/profile">View profile</a></button>
                   &nbsp;&nbsp;
                   <form action="/logout" method="POST" >
                     <input type="submit" value="Log out"></p>

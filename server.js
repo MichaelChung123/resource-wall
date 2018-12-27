@@ -31,6 +31,8 @@ const commentsRoutes = require("./routes/comments");
 const resourceTitle = require("./routes/resources-title");
 const resourceTopic = require("./routes/resources-topic");
 const resourceUrl = require("./routes/resources-url");
+const likes = require("./routes/likes");
+const rates = require("./routes/ratings")
 const editProfileRoutes = require("./routes/editprofile");
 
 
@@ -61,6 +63,8 @@ app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources-title", resourceTitle(knex));
 app.use("/api/resources-topic", resourceTopic(knex));
 app.use("/api/resources-url", resourceUrl(knex));
+app.use("/api/likes", likes(knex));
+app.use("/api/ratings", rates(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
 
 
@@ -168,23 +172,6 @@ app.get("/:username/:collectionname", (req, res) => {
   }
 });
 
-
-// if (req.session.userid) {
-//   let result = checkUsername(req.session.userid);
-//   result.then((username) => {
-//     let templateVars = {
-//       user: req.session.userid,
-//       username: username
-//     };
-//     res.render("usercollection", templateVars);
-//   })
-// } else {
-//   let templateVars = {
-//     user: req.session.userid
-//   }
-//   res.render("usercollection", templateVars);
-// }
-
 // Post page + inserting data to db
 app.get("/post", (req, res) => {
   if (req.session.userid) {
@@ -199,7 +186,18 @@ app.get("/post", (req, res) => {
   } else {
     res.send("Please log in to post a resource");
   }
-});
+})
+
+// POST resource
+// app.get("/:userid/post", (req, res) => {
+//   const sessionId = req.session.userid;
+//   const userId = req.params.userid;
+//   if (userId == sessionId){
+//     res.render("urls_post");
+//   } else {
+//     res.send("Please log in to post a resource");
+//   }
+// });
 
 app.post("/:userid/post", (req, res) => {
   const userId = req.session.userid; 
@@ -222,7 +220,7 @@ app.post("/:userid/post", (req, res) => {
       res.redirect('/')
     })
   }  
-})
+});
 
 
 // resource details page
@@ -232,35 +230,68 @@ app.get("/:resourceid", (req, res) => {
     result.then((username) =>{
       let templateVars = {
         user: req.session.userid,
-        username: username
+        username: username,
+        resId: req.params.resourceid
       };
       res.render("urls_show_resources", templateVars);
     })
   } else {
     let templateVars = {
-      user: req.session.userid
+      user: req.session.userid,
+      resId: req.params.resourceid
     }
     res.render('urls_show_resources', templateVars);
   } 
 })
 
-app.post("/:resourceid", (req, res) => {
+app.post("/:resourceid/comments", (req, res) => {
   const userId = req.session.userid;
   const com = req.body.rcomment;
   const resourceid = req.params.resourceid;
-  knex('comments')
+    knex('comments')
+    .insert({
+      user_id: userId,
+      resource_id: resourceid,
+      comment: com,
+      time_stamp: '2019-07-01'
+    })
+    .then(() => {
+      res.redirect('/' + resourceid);
+    });
+});
+
+// POST on LIKE TODO: if clikced again alert(pop) or unlike and 
+app.post("/:resourceid/like", (req, res) => {
+  const userId = req.session.userid;
+  const resourceid = req.params.resourceid;
+  knex('likes')
   .insert({
     user_id: userId,
     resource_id: resourceid,
-    comment: com,
     time_stamp: '2019-07-01'
   })
-  .then((result) => {
+  .then(function() {
+    res.redirect('/' + resourceid);
+  });  
+});
+
+// POST on RATING
+app.post("/:resourceid/rate", (req, res) => {
+  const userId = req.session.userid;
+  const resourceid = req.params.resourceid;
+  const rate = req.body.rating;
+
+  knex('ratings')
+  .insert({
+    user_id: userId,
+    resource_id: resourceid,
+    time_stamp: '2019-07-01',
+    rating: rate
+  })
+  .then(() => {
     res.redirect('/' + resourceid);
   })
-  
-
-})
+});
 
 
 function checkUserId(username){
