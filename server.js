@@ -34,7 +34,7 @@ const resourceUrl = require("./routes/resources-url");
 const likes = require("./routes/likes");
 const rates = require("./routes/ratings")
 const editProfileRoutes = require("./routes/editprofile");
-
+const profileRoutes = require("./routes/profile-data");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -66,6 +66,7 @@ app.use("/api/resources-url", resourceUrl(knex));
 app.use("/api/likes", likes(knex));
 app.use("/api/ratings", rates(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
+app.use("/api/profile", profileRoutes(knex));
 
 
 function checkUsername(userid){
@@ -297,8 +298,9 @@ app.post("/:resourceid/like", (req, res) => {
   })
   .then(function() {
     res.redirect('/' + resourceid);
-  });  
-});
+  })
+})
+
 
 // POST on RATING
 app.post("/:resourceid/rate", (req, res) => {
@@ -319,7 +321,7 @@ app.post("/:resourceid/rate", (req, res) => {
 });
 
 // Edit page
-app.get("/:resourceid/edit", (req, res) => {
+app.get("/:resourceid/edit/post", (req, res) => {
   const userId = req.session.userid;
   const resourceid = req.params.resourceid;
   const templateVars = {resId: resourceid};
@@ -337,7 +339,7 @@ app.get("/:resourceid/edit", (req, res) => {
   });
 });
 
-app.post("/:resourceid/edit", (req, res) => {
+app.post("/:resourceid/edit/post", (req, res) => {
   const {etitle, eURL, etopic, edescription} = req.body;
   const resourceid = req.params.resourceid;
   knex('resources')
@@ -354,7 +356,7 @@ app.post("/:resourceid/edit", (req, res) => {
 
 })
 
-app.post("/:resourceid/delete", (req, res) => {
+app.post("/:resourceid/edit/delete", (req, res) => {
   const resourceid = req.params.resourceid;
   let comments = knex('comments').where('resource_id', resourceid)
   .delete()
@@ -379,7 +381,7 @@ var promise1 = new Promise(function(resolve, reject) {
 
 function checkUserId(username){
   return knex.select("id").from("users").where('username',username)
-  .then(function (users){  
+  .then(function (users){
     if(users.length>0){
       return Promise.resolve(users[0].id);
     } else {

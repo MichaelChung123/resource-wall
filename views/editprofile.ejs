@@ -25,23 +25,61 @@
         <% include ./partial/header.ejs %>
 </header>
 <body>
-    <main class="profileinfo">
-        <div id="profile">
-            <form id="updateprofile" action="/editprofile" method="POST" Content-Type="application/x-www-form-urlencoded">
-                <label class="name"><h3>Name:</h3></label>
-                </br>
-                <label class="username"><h3>Username:</h3></label>
-                </br>
-                <label><h3>Password:</h3></label>
-            </br>
-                <input type="updatepassword" name="updatepassword" required>
-                </br>
-                <label class="photo"><h3>Photo URL:</h3></label>
-                </br>
-                </br>
-                <input type="submit" value="Update">
-            </form>
+    <main class="container">
+        <div class='row'>
+            <div class='col-sm-offset-1 col-sm-3'>
+                <div class='edit-title'>
+                <h1>Edit Profile</h1>
+                </div>
+            </div>
         </div>
+
+            <form id="updateprofile" action="/editprofile" method="POST" Content-Type="application/x-www-form-urlencoded">
+                <div class='user-container'>
+                    <div class='row'>
+                        <div class='user-data col-sm-2'>
+                            <img src="../images/bobross.jpeg" class="col-sm-offset-4 img-rounded profile-img">                        
+                            <label class="name"><h3>Name:</h3></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-sm-10'>
+                <div class='row'>
+                    <div class='col-sm-offset-5 col-sm-3'>
+                    <label class="username"><h3>Username:</h3></label>
+                    </div>
+                </div>
+                </br>
+
+                <div class='row'>
+                    <div class='col-sm-offset-5 col-sm-3'>
+                        <label><h3>Password:</h3></label>
+                        </br>
+                        <input type="updatepassword" name="updatepassword">
+                    </div>
+                </div>
+                </br>
+                <div class='row'>
+                    <div class='col-sm-offset-5 col-sm-9'>    
+                        <label class="photo"><h3>Photo URL:</h3></label>
+                    </div>
+                </div>
+
+                </br>
+                </br>
+
+                <div class='row'>
+                    <div class='col-sm-offset-5 col-sm-2'>
+                        <input type="submit" value="Update">
+                    </div>
+                </div>
+            </div>
+            </br>   
+        </br>   
+            </form>
+        </br>  
+    </br>  
     </main>
 </body>
 </html>

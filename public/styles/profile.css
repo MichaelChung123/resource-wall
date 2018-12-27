@@ -1,0 +1,19 @@
+.user-profile {
+    margin: 10px 10px 10px 10px;
+    font-size: 50px;
+    position: relative;
+    top: 115px;
+}
+
+.user-avatar {
+    /* margin: 10px 10px 10px 10px; */
+    margin-top: 25px;
+}
+
+/* .fa-heart {
+    font-size: 100px;
+} */
+
+.icon-container {
+    font-size: 20px;
+}

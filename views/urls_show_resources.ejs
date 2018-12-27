@@ -27,7 +27,7 @@
         <input class="button-like" type="image" src="../images/like.png" alt="Submit" height='20px' width='20px'>
       </form>       
       
-      <form class="rating" action="<%=resId%>/rate/" method="POST">
+      <form class="rating" action="<%=resId%>/rate" method="POST">
         <input class="rate" type="submit" id="star5" name="rating" value="5" /><label for="star5" title="Excellent">5 stars</label>
         <input class="rate" type="submit" id="star4" name="rating" value="4" /><label for="star4" title="Good">4 stars</label>
         <input class="rate" type="submit" id="star3" name="rating" value="3" /><label for="star3" title="Average">3 stars</label>
@@ -38,7 +38,7 @@
       </div>
       <br>
       
-      <form action="<%=resId%>/edit/" method="GET">
+      <form action="<%=resId%>/edit/post" method="GET">
       <button>Edit</button>
       </form>
       
