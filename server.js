@@ -146,9 +146,11 @@ app.post("/:userid/post", (req, res) => {
 // RESOURCEID PAGE 
 app.get("/:resourceid", (req, res) => {    
   const resourceid = req.params.resourceid;
+  const promise = knex('comments').select('resource_id').where('resource_id', resourceid)
   const templateVars = {
-    resId: resourceid
-  }
+    resId: resourceid,
+    comId: promise
+  };
   res.render('urls_show_resources', templateVars)
 });
 
@@ -207,11 +209,10 @@ app.get("/:resourceid/edit", (req, res) => {
   const resourceid = req.params.resourceid;
   const templateVars = {resId: resourceid};
   knex('resources')
-  .select('id')
+  .select('id') 
   .where('user_id', userId)
   .then((r) => {
     for (let x of r){
-      
       if (x.id == resourceid) {
         res.render("urls_edit", templateVars);
       } else {

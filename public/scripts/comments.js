@@ -1,4 +1,4 @@
-// loading comments to resourceid page
+$(document).ready(() => {
 $(() => {
     $.ajax({
       method: "GET",
@@ -9,3 +9,4 @@ $(() => {
       }
     });
   })
+})
