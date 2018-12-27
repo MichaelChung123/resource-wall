@@ -35,6 +35,7 @@ const likes = require("./routes/likes");
 const rates = require("./routes/ratings")
 const editProfileRoutes = require("./routes/editprofile");
 const profileRoutes = require("./routes/profile-data");
+const searchtopicRoutes = require("./routes/searchtopic");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -67,6 +68,7 @@ app.use("/api/likes", likes(knex));
 app.use("/api/ratings", rates(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
 app.use("/api/profile", profileRoutes(knex));
+app.use("/api/searchtopic", searchtopicRoutes(knex));
 
 
 function checkUsername(userid){
@@ -88,7 +90,7 @@ app.get("/", (req, res) => {
     result.then((username) => {
       let templateVars = {
         user: req.session.userid,
-        username: username
+        username: username,
       };
       res.render("index", templateVars);
     })
@@ -190,6 +192,25 @@ app.post("/createcollection", (req, res) => {
   })
 });
 
+app.get("/topic", (req, res) => {
+  if (req.session.userid) {
+    let result = checkUsername(req.session.userid);
+    result.then((username) =>{
+      let templateVars = {
+        user: req.session.userid,
+        username: username,
+      };
+      res.render("topic", templateVars);
+    })
+  } else {
+    let templateVars = {
+      user: req.session.userid,
+      req: req
+    };
+    res.render("topic", templateVars)
+  };
+});
+
 
 // Get username's collection page
 app.get("/:username/:collectionname", (req, res) => {
@@ -198,7 +219,7 @@ app.get("/:username/:collectionname", (req, res) => {
     result.then((username) => {
       let templateVars = {
         user: req.session.userid,
-        username: username
+        username: username,
       };
       res.render("usercollection", templateVars);
     })
@@ -259,6 +280,7 @@ app.post("/:userid/post", (req, res) => {
     })
   }  
 });
+
 
 
 // resource details page
