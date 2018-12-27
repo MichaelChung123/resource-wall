@@ -247,17 +247,6 @@ app.get("/post", (req, res) => {
   }
 })
 
-// POST resource
-// app.get("/:userid/post", (req, res) => {
-//   const sessionId = req.session.userid;
-//   const userId = req.params.userid;
-//   if (userId == sessionId){
-//     res.render("urls_post");
-//   } else {
-//     res.send("Please log in to post a resource");
-//   }
-// });
-
 app.post("/:userid/post", (req, res) => {
   const userId = req.session.userid; 
   const url = req.body.rurl;
@@ -280,8 +269,6 @@ app.post("/:userid/post", (req, res) => {
     })
   }  
 });
-
-
 
 // resource details page
 app.get("/:resourceid", (req, res) => {
@@ -354,6 +341,64 @@ app.post("/:resourceid/rate", (req, res) => {
   })
 });
 
+// Edit page
+app.get("/:resourceid/edit/post", (req, res) => {
+  const userId = req.session.userid;
+  const resourceid = req.params.resourceid;
+  const templateVars = {resId: resourceid};
+  knex('resources')
+  .select('id') 
+  .where('user_id', userId)
+  .then((r) => {
+    for (let x of r){
+      if (x.id == resourceid) {
+        res.render("urls_edit", templateVars);
+      } else {
+        res.send(`this is not your post`);
+      }
+    }
+  });
+});
+
+app.post("/:resourceid/edit/post", (req, res) => {
+  const {etitle, eURL, etopic, edescription} = req.body;
+  const resourceid = req.params.resourceid;
+  knex('resources')
+  .where('resources.id', resourceid)
+  .update({
+    title: etitle,
+    url: eURL,
+    topic: etopic,
+    description: edescription
+  })
+  .then(() => {
+    res.redirect('/' + resourceid);
+  })
+
+})
+
+app.post("/:resourceid/edit/delete", (req, res) => {
+  const resourceid = req.params.resourceid;
+  let comments = knex('comments').where('resource_id', resourceid)
+  .delete()
+  let ratings = knex('ratings').where('resource_id', resourceid)
+  .delete()
+  let likes = knex('likes').where('resource_id', resourceid)
+  .delete()
+  let collection = knex('collection_details').where('resource_id', resourceid)
+  .update({resource_id: null})
+  Promise.all([comments, ratings, likes, collection])
+  .then(() => {
+    return knex('resources').where('id', resourceid).delete()
+  })
+  .then(() => {
+    res.redirect('/')
+  });
+});
+
+var promise1 = new Promise(function(resolve, reject) {
+  resolve('Success!');
+});
 
 function checkUserId(username){
   return knex.select("id").from("users").where('username',username)
