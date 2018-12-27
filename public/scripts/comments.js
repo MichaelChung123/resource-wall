@@ -5,7 +5,8 @@ $(() => {
       url: "/api/comments"
     }).done((comments) => {
       for(let com of comments) {
-        $("<article>").text(com.comment).prependTo($(".seed-data"));
+        let $comment = $("<article>").text(com.comment).prependTo($(".resourcecomments"));
+        $("<p>").text(`Comment by: ${com.username}`).appendTo($comment);
       }
     });
   })
