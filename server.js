@@ -222,12 +222,14 @@ app.get("/:username/:collectionname", (req, res) => {
       let templateVars = {
         user: req.session.userid,
         username: username,
+        usercollection: req.params.username
       };
       res.render("usercollection", templateVars);
     })
   } else {
     let templateVars = {
-      user: req.session.userid
+      user: req.session.userid,
+      usercollection: req.params.username
     }
     res.render("usercollection", templateVars);
   }
