@@ -6,8 +6,11 @@ $(document).ready(function() {
     $.ajax({
         method: "GET",
         url: "/api/ratings"
-      }).done((result) => {
-        let rate = Math.round(result[0].avg);
-        $('<div>').text(rate).appendTo('.avg-rate')   
+      }).done((result) => { 
+        let rate = Math.round(result[0].avg); 
+        let content = $(`.avg-rated`);
+        $('.avg-rated')
+        for (var i = 1; i <= rate; i++)
+        content.append('<label></label>')
     })
 })
