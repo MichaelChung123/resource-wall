@@ -1,8 +1,6 @@
-#resource {
-    width: 30em;
-}
-
 article.resource {
+    float: left;
+    width: 25em;
     margin-left: 2em;
     margin-top: 2em;
     margin-right: 2em;
@@ -13,21 +11,14 @@ article.resource {
     padding: 10px;
 }
 
-article.resource header {
+
+article.resource h2 {
+    font-size: 19px;
+    font-weight: bold;
     color: black;
 }
 
-article.tweet h2 {
-    float: left;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-article.tweet p {
-    padding: 10px;
-}
-
-article.tweet footer {
+article.resource footer {
     padding: 3px;
 }
 
