@@ -81,7 +81,7 @@ app.get("/:username", (req, res) => {
       let templateVars = {
         user: req.session.userid
       };
-      res.render("userprofile", templateVars);
+      res.render("userpage", templateVars);
     } else {
       res.send("Please log in to view your profile.");
     }
@@ -201,11 +201,10 @@ var promise1 = new Promise(function(resolve, reject) {
   resolve('Success!');
 });
 
-
 function checkUsername(username){
   return knex.select("id").from("users").where('username',username)
-  .then(function (users){
-    if(users.length>0){
+  .then(function (users) {
+    if(users.length>0) {
       return Promise.resolve(users[0].id);
     } else {
       return Promise.resolve(0)
@@ -213,6 +212,7 @@ function checkUsername(username){
     console.log("its after knex query");
   });
 }
+
 //Create login
 app.post('/', (req, res) => {
   let result = checkUsername(req.body.username);
