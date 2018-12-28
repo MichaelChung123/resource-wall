@@ -26,6 +26,7 @@ const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
 const collectionsRoutes = require("./routes/collections");
 const collectiondetailsRoutes = require("./routes/collectiondetails");
+const indexDataRoutes = require("./routes/index-data");
 const userscollectionRoutes = require("./routes/userscollection");
 const commentsRoutes = require("./routes/comments");
 const resourceTitle = require("./routes/resources-title");
@@ -35,6 +36,7 @@ const likes = require("./routes/likes");
 const rates = require("./routes/ratings")
 const editProfileRoutes = require("./routes/editprofile");
 const profileRoutes = require("./routes/profile-data");
+const searchtopicRoutes = require("./routes/searchtopic");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -58,6 +60,7 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/collections", collectionsRoutes(knex));
 app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
+app.use("/api/index-data", indexDataRoutes(knex));
 app.use("/api/userscollection", userscollectionRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources-title", resourceTitle(knex));
@@ -67,6 +70,7 @@ app.use("/api/likes", likes(knex));
 app.use("/api/ratings", rates(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
 app.use("/api/profile", profileRoutes(knex));
+app.use("/api/searchtopic", searchtopicRoutes(knex));
 
 
 function checkUsername(userid){
@@ -88,7 +92,7 @@ app.get("/", (req, res) => {
     result.then((username) => {
       let templateVars = {
         user: req.session.userid,
-        username: username
+        username: username,
       };
       res.render("index", templateVars);
     })
@@ -190,6 +194,25 @@ app.post("/createcollection", (req, res) => {
   })
 });
 
+app.get("/topic", (req, res) => {
+  if (req.session.userid) {
+    let result = checkUsername(req.session.userid);
+    result.then((username) =>{
+      let templateVars = {
+        user: req.session.userid,
+        username: username,
+      };
+      res.render("topic", templateVars);
+    })
+  } else {
+    let templateVars = {
+      user: req.session.userid,
+      req: req
+    };
+    res.render("topic", templateVars)
+  };
+});
+
 
 // Get username's collection page
 app.get("/:username/:collectionname", (req, res) => {
@@ -198,7 +221,7 @@ app.get("/:username/:collectionname", (req, res) => {
     result.then((username) => {
       let templateVars = {
         user: req.session.userid,
-        username: username
+        username: username,
       };
       res.render("usercollection", templateVars);
     })
@@ -381,8 +404,8 @@ var promise1 = new Promise(function(resolve, reject) {
 
 function checkUserId(username){
   return knex.select("id").from("users").where('username',username)
-  .then(function (users){
-    if(users.length>0){
+  .then(function (users) {
+    if(users.length>0) {
       return Promise.resolve(users[0].id);
     } else {
       return Promise.resolve(0)
@@ -390,6 +413,7 @@ function checkUserId(username){
     console.log("its after knex query");
   });
 }
+
 //Create login
 app.post('/', (req, res) => {
   let result = checkUserId(req.body.username);

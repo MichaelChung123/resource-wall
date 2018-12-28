@@ -9,15 +9,35 @@ body h1 {
   position: relative;
   top: 18px;
   height: 85px;
+  margin: 10px 10px 10px 10px ;
+}
+.post-avatar {
+  height: 85px;
+  margin: 20px 10px 10px 10px ;
 }
 
 .plus-button {
-  height: 40px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  height: 3em;
 }
 
 .title {
   position: relative;
   top: 25px;
+}
+
+.new-posts {
+  display: none;
+}
+
+.new-posts a {
+  float: right;
+  border-radius: 0.5em;
+  border: 0.05em solid grey;
+  padding: 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 1em;
 }
 
 .plus-cont {
@@ -55,8 +75,38 @@ body h1 {
   margin-top: 5px;
 }
 
+//container for individual posts
 .post-container {
   border: solid black;
   height: 400px;
   margin: 10px 0px 10px 0px;
+  border-radius: 10px 10px 10px 10px;
+  opacity:0.5;
 } 
+
+.post-container:hover {
+  opacity: 1;
+}
+
+.post-title {
+  margin: 10px 10px 10px 10px; 
+}
+
+.desc-container {
+  width: 250px;
+  height: 115px;
+  margin: 10px 10px 10px 10px;
+}
+
+.post-footer {
+  border-top: solid black;
+  height: 50px;
+  position: relative;
+  top: 50px;
+  margin: 10px 10px 10px 10px;
+}
+
+.icon-container{ 
+  display: flex;
+  justify-content: flex-end;
+}
