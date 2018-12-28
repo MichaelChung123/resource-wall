@@ -7,35 +7,52 @@
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/resourceid.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/rating.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/comments.js"></script>
     <script type="text/javascript" src="/scripts/likes.js"></script>
     <script type="text/javascript" src="/scripts/title.js"></script>
     <script type="text/javascript" src="/scripts/topic.js"></script>
-    <script type="text/javascript" src="/scripts/url.js"></script>
+    <script type="text/javascript" src="/scripts/url.js"></script> 
+    <script type="text/javascript" src="/scripts/rate.js"></script>
 
   </head>
-
   <body class="body">
     <h1>Details on Post/resource(comments/likes)</h1>
-    
-
-        Title:<div class="resourceid-title"></div>
-        <img class="like-button" src='../images/like.png' alt='like' height='20px' width='20px'>
-        <button>rate</button> <br>
-        <br>
-        Topic: <div class="resourceid-topic"></div><br><br>   
-        URL: <div class="resourceid-url"></div>
-        <br>
-        <form class="post-form" method="POST">
+      
+    <div class="resourceid-title">Title</div>
+      
+      <form class="like-form" action="<%=resId%>/like/" method="POST">
+        <input class="button-like" type="image" src="../images/like.png" alt="Submit" height='20px' width='20px'>
+      </form>       
+      
+      <form class="rating" action="<%=resId%>/rate" method="POST">
+        <input class="rate" type="submit" id="star5" name="rating" value="5" /><label for="star5" title="Excellent">5 stars</label>
+        <input class="rate" type="submit" id="star4" name="rating" value="4" /><label for="star4" title="Good">4 stars</label>
+        <input class="rate" type="submit" id="star3" name="rating" value="3" /><label for="star3" title="Average">3 stars</label>
+        <input class="rate" type="submit" id="star2" name="rating" value="2" /><label for="star2" title="Bad">2 stars</label>
+        <input class="rate" type="submit" id="star1" name="rating" value="1" /><label for="star1" title="Very-bad">1 star</label>
+      </form>      
+      <div class="avg-rate">
+      </div>
+      <br>
+      
+      <form action="<%=resId%>/edit/post" method="GET">
+      <button>Edit</button>
+      </form>
+      
+      <div class="resourceid-topic">Topic</div><br><br>   
+      URL: <div class="resourceid-url"></div>
+      <br>
+          
+      <form action="<%=resId%>/comments/" method="POST">
         Comments: <br>
         <div class="comment-container">
           <textarea name="rcomment" type="text"></textarea> <br><br>
           <input type="submit" value="comment">
         </div>
-        
-        <div class="seed-data"> </div> 
-    </form>
+          <div class="all-comments"></div>    
+      </form>
   </body>
 </html>

@@ -31,8 +31,11 @@ const commentsRoutes = require("./routes/comments");
 const resourceTitle = require("./routes/resources-title");
 const resourceTopic = require("./routes/resources-topic");
 const resourceUrl = require("./routes/resources-url");
+const likes = require("./routes/likes");
+const rates = require("./routes/ratings")
 const editProfileRoutes = require("./routes/editprofile");
 const profileRoutes = require("./routes/profile-data");
+const searchtopicRoutes = require("./routes/searchtopic");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -61,39 +64,76 @@ app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources-title", resourceTitle(knex));
 app.use("/api/resources-topic", resourceTopic(knex));
 app.use("/api/resources-url", resourceUrl(knex));
+app.use("/api/likes", likes(knex));
+app.use("/api/ratings", rates(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
 app.use("/api/profile", profileRoutes(knex));
+app.use("/api/searchtopic", searchtopicRoutes(knex));
+
+
+function checkUsername(userid){
+  return knex.select("username").from("users").where('id', userid)
+  .then(function (users){  
+    if(users.length>0){
+      return Promise.resolve(users[0].username);
+    } else {
+      return Promise.resolve(0)
+    }
+    console.log("its after knex query");
+  });
+};
 
 // Home page
 app.get("/", (req, res) => {
-  let templateVars = {
-    user: req.session.userid
-  };
-  res.render("index", templateVars);
-});
-
-//Profile Page
-app.get("/:username", (req, res) => {
-  let result = checkUsername(req.params.username);
-
-  result.then((value) => {
-    if(value === req.session.userid) {
+  if (req.session.userid) {
+    let result = checkUsername(req.session.userid);
+    result.then((username) => {
       let templateVars = {
-        user: req.session.userid
+        user: req.session.userid,
+        username: username,
       };
-      res.render("userpage", templateVars);
-    } else {
-      res.send("Please log in to view your profile.");
-    }
-  });
+      res.render("index", templateVars);
+    })
+  } else {
+    let templateVars = {
+      user: req.session.userid,
+    };
+    res.render("index", templateVars);
+  }
 });
+
+//Log out
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/");
+});
+
+//Get page to edit profile info
+app.get("/:username/profile", (req, res) => {
+  if (req.session.userid) {
+    let result = checkUsername(req.session.userid);
+    result.then((username) => {
+      let templateVars = {
+        user: req.session.userid,
+        username: username
+      };
+    res.render("userpage", templateVars);
+    })
+  } else {
+    let templateVars = {
+      user: req.session.userid,
+    };
+    res.render("userpage", templateVars);
+  }
+})
 
 app.get("/:username/editprofile", (req,res) => {
-  let result = checkUsername(req.params.username);
+  let result = checkUserId(req.params.username);
   result.then((value)=>{
     if(value === req.session.userid){
       let templateVars = {
-        user: req.session.userid
+        user: req.session.userid,
+        username: req.params.username
       };
       res.render("editprofile", templateVars);
     } else{
@@ -102,9 +142,8 @@ app.get("/:username/editprofile", (req,res) => {
   });
 });
 
-app.post("/:username/editprofile", (req,res) => {
-
-  //!!! - Still unable to update user profile. Removes user from users table when updating - !!!
+//Update profile information in database
+app.post("/editprofile", (req,res) => {
   knex('users')
   .where('id', req.session.userid)
   .update({
@@ -114,36 +153,99 @@ app.post("/:username/editprofile", (req,res) => {
     photo: req.body.updatephoto
   })
   .then((result) => {
-    console.log("Profile updated")
-    res.redirect('/:username')
-  })
-})
+    res.redirect(`/${req.body.updateusername}/profile`)
+  });
+});
 
-app.post("/logout", (req, res) => {
-  req.session = null;
-  res.redirect("/");
+//Get page to create a collection
+app.get("/createcollection", (req, res) => {
+  if (req.session.userid) {
+    let result = checkUsername(req.session.userid);
+    result.then((username) => {
+      let templateVars = {
+        user: req.session.userid,
+        username: username
+      };
+      res.render("createcollection", templateVars)
+    })
+  } else {
+    let templateVars = {
+      user: req.session.userid
+    }
+    res.render("createcollection", templateVars);
+  }
+});
+
+//Create collection
+app.post("/createcollection", (req, res) => {
+  let result = checkUsername(req.session.userid);
+  result.then((username) => {
+      const collectionname = req.body.collectionname;
+    knex('collections')
+    .insert({
+        user_id: req.session.userid,
+        name: req.body.collectionname
+    })
+    .then((result)=>{
+      res.redirect(`/${username}/${collectionname}`);
+    });
+  })
+});
+
+app.get("/topic", (req, res) => {
+  if (req.session.userid) {
+    let result = checkUsername(req.session.userid);
+    result.then((username) =>{
+      let templateVars = {
+        user: req.session.userid,
+        username: username,
+      };
+      res.render("topic", templateVars);
+    })
+  } else {
+    let templateVars = {
+      user: req.session.userid,
+      req: req
+    };
+    res.render("topic", templateVars)
+  };
 });
 
 
 // Get username's collection page
-
 app.get("/:username/:collectionname", (req, res) => {
-  let templateVars = {
-    user: req.session.userid
+  if (req.session.userid) {
+    let result = checkUsername(req.session.userid);
+    result.then((username) => {
+      let templateVars = {
+        user: req.session.userid,
+        username: username,
+      };
+      res.render("usercollection", templateVars);
+    })
+  } else {
+    let templateVars = {
+      user: req.session.userid
+    }
+    res.render("usercollection", templateVars);
   }
-  res.render("usercollection", templateVars);
 });
 
 // Post page + inserting data to db
-app.get("/:userid/post", (req, res) => {
-  const sessionId = req.session.userid;
-  const userId = req.params.userid;
-  if (userId == sessionId){
-    res.render("urls_post");
+app.get("/post", (req, res) => {
+  if (req.session.userid) {
+    let result = checkUsername(req.session.userid);
+    result.then((username) => {
+      let templateVars = {
+        user: req.session.userid,
+        username: username
+      };
+      res.render("urls_post", templateVars)
+    })
   } else {
-    res.status(400).end();
+    res.send("Please log in to post a resource");
   }
-});
+})
 
 app.post("/:userid/post", (req, res) => {
   const userId = req.session.userid; 
@@ -152,7 +254,7 @@ app.post("/:userid/post", (req, res) => {
   const description = req.body.rdescription;
   const topic = req.body.rtopic;
   if (!url || !title || !description || !topic) {
-    res.status(400).end();
+    res.status(400).send("This resource does not exist.");
   } else {
     knex('resources')
     .insert({
@@ -166,42 +268,139 @@ app.post("/:userid/post", (req, res) => {
       res.redirect('/')
     })
   }  
-})
+});
 
 // resource details page
-app.get("/:resourceid", (req, res) => {    
-  res.render('urls_show_resources')
+app.get("/:resourceid", (req, res) => {
+  if (req.session.userid) {
+    let result = checkUsername(req.session.userid);
+    result.then((username) =>{
+      let templateVars = {
+        user: req.session.userid,
+        username: username,
+        resId: req.params.resourceid
+      };
+      res.render("urls_show_resources", templateVars);
+    })
+  } else {
+    let templateVars = {
+      user: req.session.userid,
+      resId: req.params.resourceid
+    }
+    res.render('urls_show_resources', templateVars);
+  } 
 })
 
-app.post("/:resourceid", (req, res) => {
+app.post("/:resourceid/comments", (req, res) => {
   const userId = req.session.userid;
   const com = req.body.rcomment;
   const resourceid = req.params.resourceid;
-  knex('comments')
+    knex('comments')
+    .insert({
+      user_id: userId,
+      resource_id: resourceid,
+      comment: com,
+      time_stamp: '2019-07-01'
+    })
+    .then(() => {
+      res.redirect('/' + resourceid);
+    });
+});
+
+// POST on LIKE TODO: if clikced again alert(pop) or unlike and 
+app.post("/:resourceid/like", (req, res) => {
+  const userId = req.session.userid;
+  const resourceid = req.params.resourceid;
+  knex('likes')
   .insert({
     user_id: userId,
     resource_id: resourceid,
-    comment: com,
     time_stamp: '2019-07-01'
   })
-  .then((result) => {
+  .then(function() {
     res.redirect('/' + resourceid);
   })
-  
-
 })
 
 
-app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
+// POST on RATING
+app.post("/:resourceid/rate", (req, res) => {
+  const userId = req.session.userid;
+  const resourceid = req.params.resourceid;
+  const rate = req.body.rating;
+
+  knex('ratings')
+  .insert({
+    user_id: userId,
+    resource_id: resourceid,
+    time_stamp: '2019-07-01',
+    rating: rate
+  })
+  .then(() => {
+    res.redirect('/' + resourceid);
+  })
 });
 
+// Edit page
+app.get("/:resourceid/edit/post", (req, res) => {
+  const userId = req.session.userid;
+  const resourceid = req.params.resourceid;
+  const templateVars = {resId: resourceid};
+  knex('resources')
+  .select('id') 
+  .where('user_id', userId)
+  .then((r) => {
+    for (let x of r){
+      if (x.id == resourceid) {
+        res.render("urls_edit", templateVars);
+      } else {
+        res.send(`this is not your post`);
+      }
+    }
+  });
+});
+
+app.post("/:resourceid/edit/post", (req, res) => {
+  const {etitle, eURL, etopic, edescription} = req.body;
+  const resourceid = req.params.resourceid;
+  knex('resources')
+  .where('resources.id', resourceid)
+  .update({
+    title: etitle,
+    url: eURL,
+    topic: etopic,
+    description: edescription
+  })
+  .then(() => {
+    res.redirect('/' + resourceid);
+  })
+
+})
+
+app.post("/:resourceid/edit/delete", (req, res) => {
+  const resourceid = req.params.resourceid;
+  let comments = knex('comments').where('resource_id', resourceid)
+  .delete()
+  let ratings = knex('ratings').where('resource_id', resourceid)
+  .delete()
+  let likes = knex('likes').where('resource_id', resourceid)
+  .delete()
+  let collection = knex('collection_details').where('resource_id', resourceid)
+  .update({resource_id: null})
+  Promise.all([comments, ratings, likes, collection])
+  .then(() => {
+    return knex('resources').where('id', resourceid).delete()
+  })
+  .then(() => {
+    res.redirect('/')
+  });
+});
 
 var promise1 = new Promise(function(resolve, reject) {
   resolve('Success!');
 });
 
-function checkUsername(username){
+function checkUserId(username){
   return knex.select("id").from("users").where('username',username)
   .then(function (users) {
     if(users.length>0) {
@@ -215,7 +414,7 @@ function checkUsername(username){
 
 //Create login
 app.post('/', (req, res) => {
-  let result = checkUsername(req.body.username);
+  let result = checkUserId(req.body.username);
   result.then((value)=>{
     if(value > 0){
       req.session.userid = value;
@@ -224,4 +423,9 @@ app.post('/', (req, res) => {
       res.send("Incorrect login. Try again.");
     }
   })
+});
+
+
+app.listen(PORT, () => {
+  console.log("Example app listening on port " + PORT);
 });
