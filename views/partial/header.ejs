@@ -1,3 +1,6 @@
+<head>
+    <script type="text/javascript" src="/scripts/toggle.js"></script>
+  </head>
 <nav class="container nav" id="nav">
 
     <div class="row nav-bar">
@@ -26,6 +29,7 @@
             </div>
         </div>
 
+        <% if (user) { %>
         <div class="row">
             <div class='col-sm-offset-10'>
               <div class='plus-cont'>
@@ -33,6 +37,22 @@
               </div>  
             </div>
         </div>
+        <div class="row">
+            <section class="new-posts">
+              <a href="/post">Add new resource</a>
+              <a href="/createcollection">Add new collection</a>
+            </section>
+      </div>
+        <% } else { %>
+        <div class="row">
+          <div class='col-sm-offset-10'>
+            <div class='plus-cont'>
+            </div>  
+          </div>
+        </div>
+        <% } %>
+
+        
         
         <div class="row search-area">
           <div class='col-sm-offset-6 search-container'>
