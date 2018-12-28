@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <title>Bjük - Create collection</title>
+    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+        <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+        <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/usercollection.css" type="text/css" />
+    
+        <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+        <% include ./partial/header.ejs %>
+
+</head>
+
+<body>
+    <section class="new-collection">
+        <h2>Create collection</h2>
+
+        <form id="collectionform" action="/createcollection" method="POST" Content-Type="application/x-www-form-urlencoded">
+          <textarea class="collectionname" type="text" name="collectionname" placeholder="Enter your collection name"></textarea>
+          <input id="createcollection" type="submit" value="Create">
+        </form>
+
+    </section>
+
+</body>
+
+</html>

@@ -6,9 +6,10 @@ const router  = express.Router();
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
-    knex
-      .select("*")
-      .from("ratings")
+    const referer = req.headers.referer.split('/');
+    knex('ratings')
+      .avg("rating")
+      .where('resource_id', referer[3])
       .then((results) => {
         res.json(results);
     });

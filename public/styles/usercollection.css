@@ -1,0 +1,48 @@
+#resource {
+    width: 30em;
+}
+
+article.resource {
+    margin-left: 2em;
+    margin-top: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    border-radius: 8px;
+    border: 0.5px solid black;
+    opacity: 0.7;
+    padding: 10px;
+}
+
+article.resource header {
+    color: black;
+}
+
+article.tweet h2 {
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+article.tweet p {
+    padding: 10px;
+}
+
+article.tweet footer {
+    padding: 3px;
+}
+
+article.resource .icon {
+    float: right;
+    color: blue;
+    font-size: 1.3em;
+    opacity: 0.7;
+    padding: 2;
+}
+
+article.resource:hover {
+    opacity: 1;
+}
+
+article.resource:hover .icon {
+    opacity: 1;
+}
