@@ -26,6 +26,7 @@ const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
 const collectionsRoutes = require("./routes/collections");
 const collectiondetailsRoutes = require("./routes/collectiondetails");
+const indexDataRoutes = require("./routes/index-data");
 const userscollectionRoutes = require("./routes/userscollection");
 const commentsRoutes = require("./routes/comments");
 const resourceTitle = require("./routes/resources-title");
@@ -59,6 +60,7 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/collections", collectionsRoutes(knex));
 app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
+app.use("/api/index-data", indexDataRoutes(knex));
 app.use("/api/userscollection", userscollectionRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources-title", resourceTitle(knex));
@@ -402,8 +404,8 @@ var promise1 = new Promise(function(resolve, reject) {
 
 function checkUserId(username){
   return knex.select("id").from("users").where('username',username)
-  .then(function (users){
-    if(users.length>0){
+  .then(function (users) {
+    if(users.length>0) {
       return Promise.resolve(users[0].id);
     } else {
       return Promise.resolve(0)
@@ -411,6 +413,7 @@ function checkUserId(username){
     console.log("its after knex query");
   });
 }
+
 //Create login
 app.post('/', (req, res) => {
   let result = checkUserId(req.body.username);

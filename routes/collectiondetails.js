@@ -11,6 +11,7 @@ module.exports = (knex) => {
       .from("collection_details")
       .join('resources', 'collection_details.resource_id', 'resources.id')
       .join('collections', 'collection_details.collection_id', 'collections.id')
+      .join('users', 'collection_details.id', 'users.id')
       .then((results) => {
         res.json(results);
     });
