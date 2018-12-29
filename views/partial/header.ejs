@@ -4,58 +4,48 @@
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
   </head>
+
+
 <nav class="container nav" id="nav">
 
     <div class="row nav-bar">
-        <div class='col-sm-offset-1 col-sm-1'>
+      <div class='col-sm-offset-1 col-sm-1'>
         <a href="/"><img src="/images/page.png" class="img-rounded logo" alt="icon-boy"></a>
-          </div>
-          <div class='col-sm-3'>
-            <a href="/"><h1 class="title">Bjük</h1></a>
-          </div>
+      </div>
+      
+      <div class='col-sm-3'>
+        <a href="/"><h1 class="title">Bjük</h1></a>
+      </div>
 
-            <div class='col-sm-7 login-container'>
-              <% if (user) { %>
-                <p> You are logged in&nbsp;&nbsp;
-                  <button type="button"><a href="/<%= username %>/profile">View profile</a></button>
-                  &nbsp;&nbsp;
-                  <form action="/logout" method="POST" >
-                    <input type="submit" value="Log out"></p>
-                  </form>
-              <% } else { %>
-                <form action="/" method="POST" >
-                  <label for="LoginUsername"><h4>Username</h4></label>
-                  <input type="username" name="username" style="width: 300px; height: 20px" required>
-                  <input type="submit" value="Login">
-                </form>
-              <% } %>
-            </div>
+            
+      <% if (user) { %>
+        <div class='col-sm-7 login-container'>
+          <button class="view-profile" type="button"><a href="/<%= username %>/profile">View profile</a></button>
+          <form action="/logout" method="POST" >
+            <input class="logout" type="submit" value="Log out"></p>
+          </form>
+          
+            <button class='plus-button'><i class="fas fa-plus-circle"></i>&nbsp; Add</button>
         </div>
-
-        <% if (user) { %>
-        <div class="row">
-            <div class='col-sm-offset-10'>
-              <div class='plus-cont'>
-                <button class='plus-button'><i class="fas fa-plus-circle"></i></button>
-              </div>  
-            </div>
-        </div>
-        <div class="row">
+        
+        <div class='col-sm-10'>
+          <div class="row">
             <section class="new-posts">
               <a href="/post">Add new resource</a>
               <a href="/createcollection">Add new collection</a>
             </section>
-      </div>
-        <% } else { %>
-        <div class="row">
-          <div class='col-sm-offset-10'>
-            <div class='plus-cont'>
-            </div>  
           </div>
         </div>
-        <% } %>
 
-        
+      <% } else { %>
+        <div class='col-sm-6 login-container'>
+          <form action="/" method="POST" >
+            <input type="username" name="username" placeholder="Username"required>
+            <input class="login-button" type="submit" value="Login">
+          </form>
+      <% } %>
+            </div>
+        </div>
         
         <div class="row search-area">
           <div class='col-sm-offset-1 search-container'>

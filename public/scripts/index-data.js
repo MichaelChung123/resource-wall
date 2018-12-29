@@ -21,7 +21,7 @@ function createResourceElement(resources) {
             <p class='desc-container'>
                 ${description}
             </p>
-            <img src="../styles/bobross.jpeg" class="img-circle post-avatar" alt="icon-boy">
+            <img src="/images/bobross.jpeg" class="img-circle post-avatar" alt="icon-boy">
             <label>${name}</label>
             <footer class="post-footer">
               <div class='col-sm-2'>

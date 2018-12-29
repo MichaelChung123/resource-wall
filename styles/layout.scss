@@ -5,6 +5,15 @@ body h1 {
   right: 15px;
 }
 
+
+.login-button {
+  border: none;
+  background-color: #4169e1;
+  color: white;
+  padding: 0.3em 0.8em 0.3em 0.8em;
+  border-radius: 0.5em;
+}
+
 .logo {
   float: left;
   position: relative;
@@ -14,19 +23,32 @@ body h1 {
   padding: 5px;
 }
 
-.post-avatar {
-  height: 85px;
-  margin: 20px 10px 10px 10px;
+.logout {
+  border: none;
+  background-color: #4169e1;
+  color: white;
+  padding: 0.3em 0.8em 0.3em 0.8em;
+  border-radius: 0.5em;
+  height: 3em;
+  width: 7em;
+  margin-right: 1em;
 }
 
 .plus-button {
-  font-size: 3em;
   border: none;
-  color: #4169e1;
-  margin-top: 0.4em;
-  margin-right: 0.3em;
-  margin-bottom: 0.3em;
-  padding: 0;
+  background-color: #4169e1;
+  color: white;
+  padding: 0.3em 0.8em 0.3em 0.8em;
+  border-radius: 0.5em;
+  height: 3em;
+  width: 7em;
+  margin-right: 1em;
+  font-size: 1em;
+}
+
+.post-avatar {
+  height: 85px;
+  margin: 20px 10px 10px 10px;
 }
 
 .title {
@@ -37,6 +59,23 @@ body h1 {
   color: #4169e1;
   letter-spacing: 0.06em;
 }
+.view-profile {
+  border: none;
+  background-color: #4169e1;
+  height: 3em;
+  width: 7em;
+  border-radius: 0.5em;
+  margin-right: 1em;
+}
+
+.view-profile a {
+  border: none;
+  text-decoration: none;
+  padding: 0;
+  color: white;
+}
+
+
 
 .new-posts {
   display: none;
@@ -45,15 +84,12 @@ body h1 {
 .new-posts a {
   float: right;
   border-radius: 0.5em;
-  border: 0.05em solid grey;
+  border: 0.1em solid #4169e1;
   padding: 0.5em;
   margin-right: 0.5em;
   margin-bottom: 1em;
-}
-
-.plus-cont {
-  display: flex;
-  justify-content: flex-end;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .search-bar {
@@ -78,6 +114,7 @@ body h1 {
   background-color: #4169e1;
   justify-content: flex-end;
   margin-bottom: 2em;
+  margin-top: 8em;
 }
 
 .nav-cred {

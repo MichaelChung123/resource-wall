@@ -13,7 +13,7 @@ $(() => {
         $('<i class="icon fas fa-comment"></i>').appendTo($footer);
         $('<i class="icon fas fa-heart"></i>').appendTo($footer);
       }
-
+ 
     });
   });
   
