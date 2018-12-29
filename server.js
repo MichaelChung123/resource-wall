@@ -236,7 +236,7 @@ app.get("/:username/:collectionname", (req, res) => {
 });
 
 // Post page + inserting resource into collections
-app.get("/:username/post/resource", (req, res) => {
+app.get("/post", (req, res) => {
   if (req.session.userid) {
     let result = checkUsername(req.session.userid);
     result.then((username) => {

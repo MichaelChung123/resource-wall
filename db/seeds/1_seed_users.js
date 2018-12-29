@@ -9,19 +9,19 @@ exports.seed = function(knex, Promise) {
           name: 'neg',
           username: 'neg',
           password: 'neg',
-          photo: null
+          photo: 'https://pbs.twimg.com/profile_images/523916705253187584/h6wvQGHj_400x400.png'
         }),
         knex('users').insert({
           name: 'michael',
           username: 'michael',
           password: 'michael',
-          photo: null
+          photo: 'https://pbs.twimg.com/profile_images/378800000328970347/40e96c650dad499b060a4f24ddc68c6e_400x400.png'
         }),
         knex('users').insert({
           name: 'daniel',
           username: 'daniel',
           password: 'daniel',
-          photo: null
+          photo: 'https://pbs.twimg.com/profile_images/378800000328970347/40e96c650dad499b060a4f24ddc68c6e_400x400.png'
         })
       ]);
     });

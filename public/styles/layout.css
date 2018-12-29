@@ -112,27 +112,13 @@ body h1 {
   background-color: #4169e1;
   justify-content: flex-end;
   margin-bottom: 2em;
-  margin-top: 8em;
-}
-
-.nav-cred {
-  height: 20px;
+  margin-top: 1em;
 }
 
 .login-container {
   display: flex;
   justify-content: flex-end;
   margin-top: 1em;
-}
-
-.nav-border {
-  margin-bottom: 1em;
-  margin-top: 1em;
-  border-bottom: solid black;
-}
-
-.nav-bar {
-  height: 25px;
 }
 
 .search-container {
