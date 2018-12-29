@@ -12,6 +12,7 @@ function createResourceElement(resources) {
   let description = resources.description;
   let topic = resources.topic.replace(/,/g, " ");
   let name = resources.name;
+  let photo = resources.photo;
 
   let $resource = $("<article>").addClass('col-sm-4').html(`
           <div class='col-sm-12'>
@@ -20,7 +21,7 @@ function createResourceElement(resources) {
             <p class='desc-container'>
                 ${description}
             </p>
-            <img src="/images/bobross.jpeg" class="img-circle post-avatar" alt="icon-boy">
+            <img src="${photo}" class="img-circle post-avatar" alt="icon-boy">
             <label>${name}</label>
             <footer class="post-footer">
               <div class='col-sm-2'>
