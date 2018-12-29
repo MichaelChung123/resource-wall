@@ -1,22 +1,28 @@
-body {
-  margin: 0;
-}
-
 #index-container {
   position: absolute;
-  margin-top: 14em;
+  margin-top: 15em;
   margin-left: 8em;
   margin-right: 8em;
 }
 
-.sort-by {
-  margin-bottom: 2em;
+.post-avatar {
+  height: 85px;
+  margin: 20px 10px 10px 10px;
+}
+
+.title {
+  float: left;
+  margin-left: 1.3em;
+  margin-top: 25px;
+  position: relative;
+  color: #4169e1;
+  letter-spacing: 0.06em;
 }
 
 .post-container {
   border: solid black;
   height: 400px;
-  /* margin: 12em 0 0 0; */
+  margin: 10px 0px 10px 0px;
   border-radius: 10px 10px 10px 10px;
   opacity: 0.5;
 }
@@ -35,20 +41,15 @@ body {
   margin: 10px 10px 10px 10px;
 }
 
-.icon-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .post-footer {
   border-top: solid black;
+  height: 50px;
   position: relative;
   top: 50px;
   margin: 10px 10px 10px 10px;
 }
 
-div#index-footer {
-  margin-top: 2em;
-  margin-bottom: 2em;
-  width: 100%
+.icon-container {
+  display: flex;
+  justify-content: flex-end;
 }
