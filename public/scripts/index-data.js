@@ -4,7 +4,6 @@ $(() => {
     url: "/api/index-data"
   }).done((indexData) => {
     renderResources(indexData);
-    console.log(indexData);
   });
 });
 
