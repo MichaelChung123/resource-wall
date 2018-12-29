@@ -6,7 +6,7 @@ $(document).ready(function(){
       method: "GET",
       url: "/api/likes"
     }).done((result) => {
-      $('<div>').text(result[0].count).appendTo('.like-form')      
+      $('<div>').text(result[0].count).appendTo('.like-count')      
     })
   });
   

@@ -1,5 +1,4 @@
 .body {
-    text-align: center;
     margin: auto;
     width: 45em;
 }
@@ -12,12 +11,11 @@ article {
 }
 
 .edit-resource {
-    margin-bottom: 3em;
-    margin-right: 1em;
+    margin: 0.7em;
+    float: right;
     border: none;
     background-color: #4169e1;
     color: white;
-    padding: 0.3em 0.8em 0.3em 0.8em;
     border-radius: 0.5em;
     height: 3em;
     width: 5em;
@@ -35,12 +33,17 @@ article {
 }
 
 
-.like-form {
+/* .like-form {
     float: left;
     margin-right: 3em;
-}
+} */
 
 h3 {
     font-weight: 500;
     font-size: 1.5em;
+}
+
+.resource-container {
+    text-align: center;
+    margin: 5em;
 }
