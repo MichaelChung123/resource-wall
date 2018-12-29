@@ -26,6 +26,16 @@
 <body>
 
     <section id="resource">
+
+        <% if (username === usercollection) { %>
+        <a href="/<%=username%>/post/resource"><article class="add-resource">
+                Add resource
+            </br>
+                <i class="icon fas fa-plus-circle"></i>
+        </article></a>
+        <% } %>
+
+
     </section> 
     
 </body>
