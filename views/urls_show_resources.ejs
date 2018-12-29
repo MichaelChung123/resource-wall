@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Bjük resources</title>
+
+    <!-- Bootstrap styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -18,12 +23,15 @@
     <script type="text/javascript" src="/scripts/url.js"></script> 
     <script type="text/javascript" src="/scripts/rate.js"></script>
 
+    <% include ./partial/header.ejs %>
   </head>
-  <body class="body">
-    <h1>Details on Post/resource(comments/likes)</h1>
+  <body>
+    <main class="body">
+    <!-- <h1>Details on Post/resource(comments/likes)</h1> -->
       
-    <div class="resourceid-title">Title</div>
-      
+    <div class="resourceid-title"></div>
+        <button class="edit-resource"><a href="<%=resId%>/edit/post">Edit</a></button>
+    <div class="row">
       <form class="like-form" action="<%=resId%>/like/" method="POST">
         <input class="button-like" type="image" src="../images/like.png" alt="Submit" height='20px' width='20px'>
       </form>       
@@ -38,22 +46,24 @@
       
       <div class="avg-rated"></div>
       <br>
+    </div>
+
       
-      <form action="<%=resId%>/edit/post" method="GET">
-      <button>Edit</button>
-      </form>
-      
-      <div class="resourceid-topic">Topic</div><br><br>   
-      URL: <div class="resourceid-url"></div>
+      <div class="resourceid-topic"><h3>Topics:</h3></div>
+
+      <div class="resourceid-url"><h3>URL: </h3></div>
       <br>
           
       <form action="<%=resId%>/comments/" method="POST">
-        Comments: <br>
+        <h3>Comment: </h3>
         <div class="comment-container">
           <textarea name="rcomment" type="text"></textarea> <br><br>
           <input type="submit" value="comment">
         </div>
+      </br>
+        <p>All comments:</p>
           <div class="all-comments"></div>    
       </form>
+    </main>
   </body>
 </html>

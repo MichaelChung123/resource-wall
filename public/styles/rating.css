@@ -7,14 +7,14 @@
 .rating:not(:checked) > label {
     float:right;
     width:1em;
-    padding:0 .1em;
+    /* padding:0.1em; */
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
     font-size:200%;
     line-height:1.2;
     color:#ddd;
-    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+    /* text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5); */
 }
 
 .rating:not(:checked) > label:before {
