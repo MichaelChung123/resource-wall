@@ -233,8 +233,8 @@ app.get("/:username/:collectionname", (req, res) => {
   }
 });
 
-// Post page + inserting data to db
-app.get("/post", (req, res) => {
+// Post page + inserting resource into collections
+app.get("/:username/post/resource", (req, res) => {
   if (req.session.userid) {
     let result = checkUsername(req.session.userid);
     result.then((username) => {
@@ -249,28 +249,39 @@ app.get("/post", (req, res) => {
   }
 })
 
-app.post("/:userid/post", (req, res) => {
+app.post("/:username/post/resource", (req, res) => {
   const userId = req.session.userid; 
-  const url = req.body.rurl;
-  const title = req.body.rtitle;
-  const description = req.body.rdescription;
-  const topic = req.body.rtopic;
-  if (!url || !title || !description || !topic) {
-    res.status(400).send("This resource does not exist.");
+  const {rurl, rtitle, rdescription, rtopic, dropdown} = req.body;
+  const collectionId = knex('collections').select('id').where('name', dropdown);
+
+  if (!rurl || !rtitle || !rdescription || !rtopic) {
+    res.status(400).send("Please fill in all the fields");
   } else {
     knex('resources')
     .insert({
       user_id: userId,
-      url: req.body.rurl,
-      title: req.body.rtitle,
-      description: req.body.rdescription,
-      topic: req.body.rtopic
+      url: rurl,
+      title: rtitle,
+      description: rdescription,
+      topic: rtopic
+    })
+    .returning('id')
+    .then((r) => {
+      return knex('collection_details')
+      .insert({
+        resource_id: r[0],
+        collection_id: collectionId
+      })
     })
     .then(() => {
       res.redirect('/')
     })
   }  
 });
+
+// app.post('/:username/post/collections', (req, res) => {
+//   console.log()
+// })
 
 // resource details page
 app.get("/:resourceid", (req, res) => {
@@ -388,7 +399,7 @@ app.post("/:resourceid/edit/delete", (req, res) => {
   let likes = knex('likes').where('resource_id', resourceid)
   .delete()
   let collection = knex('collection_details').where('resource_id', resourceid)
-  .update({resource_id: null})
+  .delete()
   Promise.all([comments, ratings, likes, collection])
   .then(() => {
     return knex('resources').where('id', resourceid).delete()
