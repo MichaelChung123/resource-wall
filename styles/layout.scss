@@ -6,25 +6,36 @@ body h1 {
 }
 
 .logo {
+  float: left;
   position: relative;
-  top: 18px;
-  height: 85px;
-  margin: 10px 10px 10px 10px ;
+  margin-top: 0.3em;
+  margin-left: 2em;
+  height: 6.5em;
+  padding: 5px;
 }
+
 .post-avatar {
   height: 85px;
-  margin: 20px 10px 10px 10px ;
+  margin: 20px 10px 10px 10px;
 }
 
 .plus-button {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  height: 3em;
+  font-size: 3em;
+  border: none;
+  color: #4169e1;
+  margin-top: 0.4em;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
+  padding: 0;
 }
 
 .title {
+  float: left;
+  margin-left: 1.3em;
+  margin-top: 25px;
   position: relative;
-  top: 25px;
+  color: #4169e1;
+  letter-spacing: 0.06em;
 }
 
 .new-posts {
@@ -46,8 +57,27 @@ body h1 {
 }
 
 .search-bar {
-  width: 300px;
-  height: 20px;
+  background-color: #4169e1;
+  color: white;
+  border: none;
+  font-size: 1.4em;
+  padding: 10px;
+}
+
+.search-submit {
+  font-weight: 300;
+  background-color: #4169e1;
+  color: white;
+  border: none;
+  font-size: 1.6em;
+  margin-right: 0.7em;
+}
+
+.search-area {
+  display: flex;
+  background-color: #4169e1;
+  justify-content: flex-end;
+  margin-bottom: 2em;
 }
 
 .nav-cred {
@@ -57,16 +87,15 @@ body h1 {
 .login-container {
   display: flex;
   justify-content: flex-end;
+  margin-top: 1em;
 }
 
-.search-area {
-  display: flex;
-  justify-content: flex-end;
-}
 .nav-border {
-  margin-bottom: 5px;
+  margin-bottom: 1em;
+  margin-top: 1em;
   border-bottom: solid black;
 }
+
 .nav-bar {
   height: 25px;
 }
@@ -75,21 +104,20 @@ body h1 {
   margin-top: 5px;
 }
 
-//container for individual posts
 .post-container {
   border: solid black;
   height: 400px;
   margin: 10px 0px 10px 0px;
   border-radius: 10px 10px 10px 10px;
-  opacity:0.5;
-} 
+  opacity: 0.5;
+}
 
 .post-container:hover {
   opacity: 1;
 }
 
 .post-title {
-  margin: 10px 10px 10px 10px; 
+  margin: 10px 10px 10px 10px;
 }
 
 .desc-container {
@@ -106,7 +134,7 @@ body h1 {
   margin: 10px 10px 10px 10px;
 }
 
-.icon-container{ 
+.icon-container {
   display: flex;
   justify-content: flex-end;
 }
