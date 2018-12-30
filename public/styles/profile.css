@@ -1,3 +1,25 @@
+/* #post-cols{
+    opacity: 0.5;
+}
+#collection-cols{
+    opacity: 0.5;
+} */
+
+.hover-collection {
+    opacity: 0.5;
+}
+
+.hover-post {
+    opacity: 0.5;
+}
+
+.hover-collection:hover {
+    opacity: 1;
+}
+.hover-post:hover {
+    opacity: 1;
+}
+
 .user-profile {
     margin: 10px 10px 10px 10px;
     font-size: 50px;
@@ -13,6 +35,13 @@
 /* .fa-heart {
     font-size: 100px;
 } */
+
+.icon-wrapper {
+    text-align: center;
+}
+header {
+    margin-top: 180px;
+}
 
 .icon-container {
     font-size: 20px;
