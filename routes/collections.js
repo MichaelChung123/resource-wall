@@ -5,10 +5,11 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
-  router.get("/", (req, res) => {
-    knex
+  router.get("/", (req, res) => {  
+    knex('users')
       .select("*")
-      .from("collections")
+      .join('collections', 'user_id', 'users.id')
+      .where('users.id', req.session.userid)
       .then((results) => {
         res.json(results);
     });

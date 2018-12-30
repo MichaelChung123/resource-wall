@@ -1,12 +1,72 @@
 .body {
-    text-align: center;
-    margin: 100px;
+
+}
+.whole-container {
+    position: absolute;
+    margin-top: 15em;
+    width: 100%;
 }
 
 article {
     border: solid 1px;
-    height: 100px;
     border-radius: 10px;
     margin: 10px;
+    padding: 1em;
 }
 
+.edit-resource {
+    margin: 0.5em;
+    float: right;
+    border: none;
+    background-color: #4169e1;
+    color: white;
+    border-radius: 0.5em;
+    height: 3em;
+    width: 5em;
+}
+
+.edit-resource a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+
+}
+
+.resourceid-title {
+    font-size: 3em;
+}
+
+
+/* .like-form {
+    float: left;
+    margin-right: 3em;
+} */
+
+h3 {
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+.resource-container {
+    text-align: center;
+
+}
+
+.comment-container textarea {
+    width: 30em;
+    height: 8em;
+    resize: none;
+    border-radius: 10px;
+}
+
+.comment-container input {
+    background-color: #4169e1;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    height: 2.5em;
+}
+
+.resourceid-title {
+    font-family: 'Anton', sans-serif;
+}

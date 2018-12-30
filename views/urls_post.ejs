@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/post_collection_menu.js"></script>
   </head>
 
   <body>
     <% include ./partial/header.ejs %>
-
     <h1>Post your new resource!</h1>
-    <form id="post-form" action="/:userid/post" method="POST">
+    <form id="post-form" action="/<%=username%>/post/resource" method="POST">
       URL: <input type="text" name="rurl">
     </br>
     </br>
@@ -27,15 +27,12 @@
     </br>
     <div class='row'>
         <div class='col-sm-5'>
-          <label>Collection:</label>
-          <form>
-            <select name="dropdown">
-              <option value='blank'></option>
-              <option value='rating'>Add options via routes</option>
-            </select>
-          </form>
+
+              <label>Collection:</label>
+                <select class="collection-menu" name="dropdown"></select>
+
         </div>
-      </div>
+    </div>
     <br>
       Description: <br>
       <textarea name="rdescription"></textarea>

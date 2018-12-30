@@ -1,64 +1,55 @@
-body h1 {
-  color: #244751;
-  position: relative;
-  top: 5px;
-  right: 15px;
+#index-container {
+  position: absolute;
+  margin-top: 15em;
+  margin-left: 8em;
+  margin-right: 8em;
 }
 
-.logo {
-  position: relative;
-  top: 18px;
+.post-avatar {
   height: 85px;
-}
-
-.plus-button {
-  height: 40px;
+  margin: 20px 10px 10px 10px;
 }
 
 .title {
+  float: left;
+  margin-left: 1.3em;
+  margin-top: 25px;
   position: relative;
-  top: 25px;
-}
-
-.plus-cont {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.search-bar {
-  width: 300px;
-  height: 20px;
-}
-
-.nav-cred {
-  height: 20px;
-}
-
-.login-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.search-area {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.nav-border {
-  margin-bottom: 5px;
-  border-bottom: solid black;
-}
-
-.nav-bar {
-  height: 25px;
-}
-
-.search-container {
-  margin-top: 5px;
+  color: #4169e1;
+  letter-spacing: 0.06em;
 }
 
 .post-container {
   border: solid black;
   height: 400px;
   margin: 10px 0px 10px 0px;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 0.5;
+}
+
+.post-container:hover {
+  opacity: 1;
+}
+
+.post-title {
+  margin: 10px 10px 10px 10px;
+}
+
+.desc-container {
+  width: 250px;
+  height: 115px;
+  margin: 10px 10px 10px 10px;
+}
+
+.post-footer {
+  border-top: solid black;
+  height: 50px;
+  position: relative;
+  top: 50px;
+  margin: 10px 10px 10px 10px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: flex-end;
 }

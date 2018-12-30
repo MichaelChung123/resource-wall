@@ -1,0 +1,27 @@
+#create-collection-container {
+    position: absolute;
+    margin-top: 14em;
+    margin-left: 10em;
+}
+
+#create-collection-container h2 {
+    margin-bottom: 0.5em;
+    color: #4169e1;
+    font-size: 3em;
+    letter-spacing: 0.08em;
+}
+
+.collectionname {
+    width: 20em;
+    margin-bottom: 1.3em;
+    font-size: 1.2em;
+}
+
+.createcollection {
+    background-color: #4169e1;
+    color: white;
+    padding: 0.5em;
+    width: 6em;
+    font-size: 1em;
+    letter-spacing: 0.2em;
+}

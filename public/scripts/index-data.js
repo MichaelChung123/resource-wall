@@ -4,7 +4,6 @@ $(() => {
     url: "/api/index-data"
   }).done((indexData) => {
     renderResources(indexData);
-    console.log(indexData);
   });
 });
 
@@ -13,6 +12,7 @@ function createResourceElement(resources) {
   let description = resources.description;
   let topic = resources.topic.replace(/,/g, " ");
   let name = resources.name;
+  let photo = resources.photo;
 
   let $resource = $("<article>").addClass('col-sm-4').html(`
           <div class='col-sm-12'>
@@ -21,7 +21,7 @@ function createResourceElement(resources) {
             <p class='desc-container'>
                 ${description}
             </p>
-            <img src="../styles/bobross.jpeg" class="img-circle post-avatar" alt="icon-boy">
+            <img src="${photo}" class="img-circle post-avatar" alt="icon-boy">
             <label>${name}</label>
             <footer class="post-footer">
               <div class='col-sm-2'>
@@ -59,4 +59,11 @@ function renderResources(resourcesArray) {
   for (let x of resourcesArray) {
     $('.body-container').prepend(createResourceElement(x));
   }
+  
+  // $(".post-container").on("mouseenter", function (event) {
+  //   $(".post-container").addClass('post-container-mouseenter');
+  // });
+  // $(".post-container").on("mouseleave", function (event) {
+  //   $(".post-container").removeClass('post-container-mouseenter');
+  // });
 }

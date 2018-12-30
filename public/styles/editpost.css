@@ -1,0 +1,41 @@
+#edit-post-container {
+    position: absolute;
+    margin-top: 15em;
+    margin-left: 10em;
+}
+
+#edit-post-container label {
+    font-size: 1.5em;
+    color: #4169e1;
+}
+
+#edit-post-container input {
+    font-size: 1.3em;
+    margin-bottom: 1.3em;
+    width: 30em;
+}
+
+#edit-post-container .collection-menu {
+    width: 20em;
+    margin-bottom: 1.3em;
+    font-size: 1.3em;
+}
+
+#edit-post-container button {
+    background-color: #4169e1;
+    color: white;
+    font-size: 1.4em;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 0.3em;
+    width: 7em;
+    padding: 0.3em;
+    margin-right: 1em;
+    margin-top: 1em;
+    float: left;
+    margin-bottom: 5em;
+}
+
+#edit-post-container form {
+    float: left;
+}

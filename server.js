@@ -26,16 +26,16 @@ const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
 const collectionsRoutes = require("./routes/collections");
 const collectiondetailsRoutes = require("./routes/collectiondetails");
+const indexDataRoutes = require("./routes/index-data");
 const userscollectionRoutes = require("./routes/userscollection");
 const commentsRoutes = require("./routes/comments");
-const resourceTitle = require("./routes/resources-title");
-const resourceTopic = require("./routes/resources-topic");
-const resourceUrl = require("./routes/resources-url");
+const resourcePage = require("./routes/resources-page");
 const likes = require("./routes/likes");
-const rates = require("./routes/ratings")
+const rates = require("./routes/ratings");
 const editProfileRoutes = require("./routes/editprofile");
 const profileRoutes = require("./routes/profile-data");
 const searchtopicRoutes = require("./routes/searchtopic");
+const userheaderRoutes = require("./routes/userprofileheader");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -59,16 +59,16 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/collections", collectionsRoutes(knex));
 app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
+app.use("/api/index-data", indexDataRoutes(knex));
 app.use("/api/userscollection", userscollectionRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
-app.use("/api/resources-title", resourceTitle(knex));
-app.use("/api/resources-topic", resourceTopic(knex));
-app.use("/api/resources-url", resourceUrl(knex));
+app.use("/api/resources-page", resourcePage(knex));
 app.use("/api/likes", likes(knex));
 app.use("/api/ratings", rates(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
 app.use("/api/profile", profileRoutes(knex));
 app.use("/api/searchtopic", searchtopicRoutes(knex));
+app.use("/api/userprofileheader", userheaderRoutes(knex));
 
 
 function checkUsername(userid){
@@ -79,9 +79,11 @@ function checkUsername(userid){
     } else {
       return Promise.resolve(0)
     }
-    console.log("its after knex query");
   });
 };
+
+
+
 
 // Home page
 app.get("/", (req, res) => {
@@ -220,18 +222,20 @@ app.get("/:username/:collectionname", (req, res) => {
       let templateVars = {
         user: req.session.userid,
         username: username,
+        usercollection: req.params.username
       };
       res.render("usercollection", templateVars);
     })
   } else {
     let templateVars = {
-      user: req.session.userid
+      user: req.session.userid,
+      usercollection: req.params.username
     }
     res.render("usercollection", templateVars);
   }
 });
 
-// Post page + inserting data to db
+// Post page + inserting resource into collections
 app.get("/post", (req, res) => {
   if (req.session.userid) {
     let result = checkUsername(req.session.userid);
@@ -247,22 +251,29 @@ app.get("/post", (req, res) => {
   }
 })
 
-app.post("/:userid/post", (req, res) => {
+app.post("/:username/post/resource", (req, res) => {
   const userId = req.session.userid; 
-  const url = req.body.rurl;
-  const title = req.body.rtitle;
-  const description = req.body.rdescription;
-  const topic = req.body.rtopic;
-  if (!url || !title || !description || !topic) {
-    res.status(400).send("This resource does not exist.");
+  const {rurl, rtitle, rdescription, rtopic, dropdown} = req.body;
+  const collectionId = knex('collections').select('id').where('name', dropdown);
+
+  if (!rurl || !rtitle || !rdescription || !rtopic) {
+    res.status(400).send("Please fill in all the fields");
   } else {
     knex('resources')
     .insert({
       user_id: userId,
-      url: req.body.rurl,
-      title: req.body.rtitle,
-      description: req.body.rdescription,
-      topic: req.body.rtopic
+      url: rurl,
+      title: rtitle,
+      description: rdescription,
+      topic: rtopic
+    })
+    .returning('id')
+    .then((r) => {
+      return knex('collection_details')
+      .insert({
+        resource_id: r[0],
+        collection_id: collectionId
+      })
     })
     .then(() => {
       res.redirect('/')
@@ -278,7 +289,7 @@ app.get("/:resourceid", (req, res) => {
       let templateVars = {
         user: req.session.userid,
         username: username,
-        resId: req.params.resourceid
+        resId: req.params.resourceid,
       };
       res.render("urls_show_resources", templateVars);
     })
@@ -307,7 +318,6 @@ app.post("/:resourceid/comments", (req, res) => {
     });
 });
 
-// POST on LIKE TODO: if clikced again alert(pop) or unlike and 
 app.post("/:resourceid/like", (req, res) => {
   const userId = req.session.userid;
   const resourceid = req.params.resourceid;
@@ -341,30 +351,45 @@ app.post("/:resourceid/rate", (req, res) => {
   })
 });
 
+
 // Edit page
 app.get("/:resourceid/edit/post", (req, res) => {
+  let result = checkUsername(req.session.userid);
   const userId = req.session.userid;
   const resourceid = req.params.resourceid;
-  const templateVars = {resId: resourceid};
   knex('resources')
   .select('id') 
   .where('user_id', userId)
   .then((r) => {
-    for (let x of r){
-      if (x.id == resourceid) {
-        res.render("urls_edit", templateVars);
+    let found = r.find((e) => {
+      if (e.id == undefined) {
+        return undefined;
       } else {
+        return e.id == resourceid
+      }  
+    })
+      if (found == undefined) {
         res.send(`this is not your post`);
+      } else if (found.id == resourceid) {
+        result.then((username) =>{
+          let templateVars = {
+            user: req.session.userid,
+            username: username,
+            resId: req.params.resourceid
+          }
+          res.render("urls_edit", templateVars);
+        });
       }
-    }
   });
 });
 
 app.post("/:resourceid/edit/post", (req, res) => {
   const {etitle, eURL, etopic, edescription} = req.body;
-  const resourceid = req.params.resourceid;
+  const selectCollection = req.body.dropdown;
+  const resourceId = req.params.resourceid;
+  const collectionId = knex('collections').select('id').where('name', selectCollection)
   knex('resources')
-  .where('resources.id', resourceid)
+  .where('resources.id', resourceId)
   .update({
     title: etitle,
     url: eURL,
@@ -372,7 +397,14 @@ app.post("/:resourceid/edit/post", (req, res) => {
     description: edescription
   })
   .then(() => {
-    res.redirect('/' + resourceid);
+    return knex('collection_details')
+    .update({
+      resource_id: resourceId,
+      collection_id: collectionId
+    })
+  })
+  .then(() => {
+    res.redirect('/' + resourceId);
   })
 
 })
@@ -386,7 +418,7 @@ app.post("/:resourceid/edit/delete", (req, res) => {
   let likes = knex('likes').where('resource_id', resourceid)
   .delete()
   let collection = knex('collection_details').where('resource_id', resourceid)
-  .update({resource_id: null})
+  .delete()
   Promise.all([comments, ratings, likes, collection])
   .then(() => {
     return knex('resources').where('id', resourceid).delete()
@@ -402,13 +434,12 @@ var promise1 = new Promise(function(resolve, reject) {
 
 function checkUserId(username){
   return knex.select("id").from("users").where('username',username)
-  .then(function (users) {
+  .then((users) => {
     if(users.length>0) {
       return Promise.resolve(users[0].id);
     } else {
       return Promise.resolve(0)
     }
-    console.log("its after knex query");
   });
 }
 

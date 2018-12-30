@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html lang='en'>
     <head>
-        <title>resource edit page</title>
+        <title>Edit your post</title>
         <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
         <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-        <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/editpost.css" type="text/css" />
 
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- FontAwesome -->
+        <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
 
         <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+        <script type="text/javascript" src="/scripts/post_collection_menu.js"></script>
+        <script type="text/javascript" src="/scripts/editpost.js"></script>
+
+
     </head>
     <body>
+            <% include ./partial/header.ejs %>
+
+        <main id="edit-post-container">
+            <div class="col-sm-2">
 
         <form action="/<%=resId%>/edit/post" method="POST">
-            Title: <input type="text" name="etitle"/><Br>
-            URL: <input type="text" name="eURL"/><br>
-            Topic: <input type="text" name="etopic"/><br>
-            Description: <br><textarea type="text" name="edescription"></textarea><br>
-            <button type="submit">Edit</button>
+        <div class="etitle row">
+            <label>Title:</label>
+        </div>
+        <div class="eurl row">
+            <label>URL:</label>
+        </div>
+        <div class="etopic row">
+            <label>Topic:</label>
+        </div>
+
+        <div class="ecollection row">
+            <label>Move to:</label>
+            <br>
+            <select class="collection-menu" name="dropdown"></select>
+        </div>
+
+        <div class="edescription row">
+            <label>Description:</label>
+        </div>
+        <div class="row">
+            <button type="submit"><i class="fas fa-edit"></i> Edit</button>            
         </form>
 
         <form action="/<%=resId%>/edit/delete" method="POST">
-            <button type="submit">Delete</button>
+            <button type="submit"><i class="fas fa-trash-alt"></i> Delete</button>
         </form>
+        </div>
+
+    </div>
+    </main>
     </body>
-</html>
+</html> 
