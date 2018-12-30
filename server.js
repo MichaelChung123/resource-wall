@@ -355,9 +355,9 @@ app.post("/:resourceid/rate", (req, res) => {
 
 // Edit page
 app.get("/:resourceid/edit/post", (req, res) => {
+  let result = checkUsername(req.session.userid);
   const userId = req.session.userid;
   const resourceid = req.params.resourceid;
-  const templateVars = {resId: resourceid};
   knex('resources')
   .select('id') 
   .where('user_id', userId)
@@ -372,7 +372,14 @@ app.get("/:resourceid/edit/post", (req, res) => {
       if (found == undefined) {
         res.send(`this is not your post`);
       } else if (found.id == resourceid) {
-        res.render("urls_edit", templateVars);
+        result.then((username) =>{
+          let templateVars = {
+            user: req.session.userid,
+            username: username,
+            resId: req.params.resourceid
+          }
+          res.render("urls_edit", templateVars);
+        });
       }
   });
 });
