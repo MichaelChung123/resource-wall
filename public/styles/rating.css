@@ -5,7 +5,7 @@
 }
 
 .rating:not(:checked) > label {
-    float:right;
+    /* float:inherit; */
     width:1em;
     /* padding:0.1em; */
     overflow:hidden;

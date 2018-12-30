@@ -15,6 +15,12 @@
     width: 30em;
 }
 
+#edit-post-container .collection-menu {
+    width: 20em;
+    margin-bottom: 1.3em;
+    font-size: 1.3em;
+}
+
 #edit-post-container button {
     background-color: #4169e1;
     color: white;
@@ -22,11 +28,12 @@
     letter-spacing: 0.1em;
     border: none;
     border-radius: 0.3em;
-    width: 5em;
+    width: 7em;
     padding: 0.3em;
-    float: left;
     margin-right: 1em;
     margin-top: 1em;
+    float: left;
+    margin-bottom: 5em;
 }
 
 #edit-post-container form {

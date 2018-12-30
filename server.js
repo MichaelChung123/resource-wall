@@ -289,7 +289,7 @@ app.get("/:resourceid", (req, res) => {
       let templateVars = {
         user: req.session.userid,
         username: username,
-        resId: req.params.resourceid
+        resId: req.params.resourceid,
       };
       res.render("urls_show_resources", templateVars);
     })
@@ -318,7 +318,6 @@ app.post("/:resourceid/comments", (req, res) => {
     });
 });
 
-// POST on LIKE TODO: if clikced again alert(pop) or unlike and 
 app.post("/:resourceid/like", (req, res) => {
   const userId = req.session.userid;
   const resourceid = req.params.resourceid;
@@ -386,9 +385,11 @@ app.get("/:resourceid/edit/post", (req, res) => {
 
 app.post("/:resourceid/edit/post", (req, res) => {
   const {etitle, eURL, etopic, edescription} = req.body;
-  const resourceid = req.params.resourceid;
+  const selectCollection = req.body.dropdown;
+  const resourceId = req.params.resourceid;
+  const collectionId = knex('collections').select('id').where('name', selectCollection)
   knex('resources')
-  .where('resources.id', resourceid)
+  .where('resources.id', resourceId)
   .update({
     title: etitle,
     url: eURL,
@@ -396,7 +397,14 @@ app.post("/:resourceid/edit/post", (req, res) => {
     description: edescription
   })
   .then(() => {
-    res.redirect('/' + resourceid);
+    return knex('collection_details')
+    .update({
+      resource_id: resourceId,
+      collection_id: collectionId
+    })
+  })
+  .then(() => {
+    res.redirect('/' + resourceId);
   })
 
 })

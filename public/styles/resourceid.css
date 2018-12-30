@@ -1,7 +1,10 @@
 .body {
-    text-align: center;
-    margin: auto;
-    width: 45em;
+
+}
+.whole-container {
+    position: absolute;
+    margin-top: 15em;
+    width: 100%;
 }
 
 article {
@@ -12,12 +15,11 @@ article {
 }
 
 .edit-resource {
-    margin-bottom: 3em;
-    margin-right: 1em;
+    margin: 0.5em;
+    float: right;
     border: none;
     background-color: #4169e1;
     color: white;
-    padding: 0.3em 0.8em 0.3em 0.8em;
     border-radius: 0.5em;
     height: 3em;
     width: 5em;
@@ -35,12 +37,36 @@ article {
 }
 
 
-.like-form {
+/* .like-form {
     float: left;
     margin-right: 3em;
-}
+} */
 
 h3 {
     font-weight: 500;
     font-size: 1.5em;
+}
+
+.resource-container {
+    text-align: center;
+
+}
+
+.comment-container textarea {
+    width: 30em;
+    height: 8em;
+    resize: none;
+    border-radius: 10px;
+}
+
+.comment-container input {
+    background-color: #4169e1;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    height: 2.5em;
+}
+
+.resourceid-title {
+    font-family: 'Anton', sans-serif;
 }
