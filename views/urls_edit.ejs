@@ -8,6 +8,7 @@
 
 
         <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+        <script type="text/javascript" src="/scripts/post_collection_menu.js"></script>
     </head>
     <body>
 
@@ -16,11 +17,13 @@
             URL: <input type="text" name="eURL"/><br>
             Topic: <input type="text" name="etopic"/><br>
             Description: <br><textarea type="text" name="edescription"></textarea><br>
+            Move to: <select class="collection-menu" name="dropdown"></select><br>
             <button type="submit">Edit</button>
+            
         </form>
 
         <form action="/<%=resId%>/edit/delete" method="POST">
             <button type="submit">Delete</button>
         </form>
     </body>
-</html>
+</html> 

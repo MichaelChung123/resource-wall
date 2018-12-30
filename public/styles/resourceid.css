@@ -45,5 +45,24 @@ h3 {
 
 .resource-container {
     text-align: center;
-    margin: 5em;
+
+}
+
+.comment-container textarea {
+    width: 30em;
+    height: 8em;
+    resize: none;
+    border-radius: 10px;
+}
+
+.comment-container input {
+    background-color: #4169e1;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    height: 2.5em;
+}
+
+.resourceid-title {
+    font-family: 'Anton', sans-serif;
 }

@@ -4,6 +4,7 @@
     <title>Bjük resources</title>
 
     <!-- Bootstrap styling -->
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -27,8 +28,10 @@
   </head>
   <body>
     <main class="body">
+
       <button class="edit-resource"><a href="<%=resId%>/edit/post">Edit</a></button>
-      <div class="resourceid-title"></div>
+
+      <div class="resourceid-title"></div><hr>
       <div class="avg-rated"></div><br>
 
     <div class="resource-container">
@@ -57,13 +60,14 @@
               <input class="rate" type="submit" id="star4" name="rating" value="4" /><label for="star4" title="Good">4 stars</label>
               <input class="rate" type="submit" id="star5" name="rating" value="5" /><label for="star5" title="Excellent">5 stars</label>
             </form>      
-
         <!-- </div> -->
       </div>
-     
-      <p>All comments:</p>
-        <div class="all-comments"></div>    
-    </div>
+    </div> 
+      <p>Comments</p><hr>
+      <div class="all-comments">
+      </div>
+      
+         
     </main>
   </body>
 </html>
