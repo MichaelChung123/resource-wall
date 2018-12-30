@@ -1,5 +1,11 @@
-h2 {
-    margin-bottom: 1em;
+#create-collection-container {
+    position: absolute;
+    margin-top: 14em;
+    margin-left: 10em;
+}
+
+#create-collection-container h2 {
+    margin-bottom: 0.5em;
     color: #4169e1;
     font-size: 3em;
     letter-spacing: 0.08em;
