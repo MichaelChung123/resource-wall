@@ -1,0 +1,134 @@
+nav#navigation {
+    position: fixed;
+    margin-bottom: 100em;
+    margin-top: 0;
+    background-color: white;
+    z-index: 1;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  
+  body h1 {
+    color: #244751;
+    top: 5px;
+    right: 15px;
+  }
+  
+  .login-button {
+    border: none;
+    background-color: #4169e1;
+    color: white;
+    padding: 0.3em 0.8em 0.3em 0.8em;
+    border-radius: 0.5em;
+  }
+  
+  .logo {
+    float: left;
+    margin-top: 0.3em;
+    margin-left: 2em;
+    height: 6.5em;
+    padding: 5px;
+  }
+  
+  .logout {
+    border: none;
+    background-color: #4169e1;
+    color: white;
+    padding: 0.3em 0.8em 0.3em 0.8em;
+    border-radius: 0.5em;
+    height: 3em;
+    width: 7em;
+    margin-right: 1em;
+  }
+  
+  .plus-button {
+    border: none;
+    background-color: #4169e1;
+    color: white;
+    padding: 0.3em 0.8em 0.3em 0.8em;
+    border-radius: 0.5em;
+    height: 3em;
+    width: 7em;
+    margin-right: 1em;
+    font-size: 1em;
+  }
+  
+  .post-avatar {
+    height: 85px;
+    margin: 20px 10px 10px 10px;
+  }
+  
+  .title {
+    float: left;
+    margin-left: 1.3em;
+    margin-top: 25px;
+    color: #4169e1;
+    letter-spacing: 0.06em;
+  }
+  
+  .view-profile {
+    border: none;
+    background-color: #4169e1;
+    height: 3em;
+    width: 7em;
+    border-radius: 0.5em;
+    margin-right: 1em;
+  }
+  
+  .view-profile a {
+    border: none;
+    text-decoration: none;
+    padding: 0;
+    color: white;
+  }
+  
+  .new-posts {
+    display: none;
+  }
+  
+  .new-posts a {
+    float: right;
+    border-radius: 0.5em;
+    border: 0.1em solid #4169e1;
+    padding: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 1em;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .search-bar {
+    background-color: #4169e1;
+    color: white;
+    border: none;
+    font-size: 1.4em;
+    padding: 10px;
+  }
+  
+  .search-submit {
+    font-weight: 300;
+    background-color: #4169e1;
+    color: white;
+    border: none;
+    font-size: 1.6em;
+    margin-right: 8em;
+  }
+  
+  .search-area {
+    display: flex;
+    background-color: #4169e1;
+    justify-content: flex-end;
+    margin-bottom: 2em;
+    margin-top: 1em;
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1em;
+  }
+  
+  .search-container {
+    margin-top: 5px;
+  }

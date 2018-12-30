@@ -1,12 +1,16 @@
 <head>
-    <!-- Script for toggling plus button -->
-    <script type="text/javascript" src="/scripts/toggle.js"></script>
-    <!-- Font Awesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
-  </head>
+  <!-- Script for toggling plus button -->
+  <script type="text/javascript" src="/scripts/toggle.js"></script>
+  
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+</head>
 
 
-<nav class="container nav" id="nav">
+<nav id="navigation" class="container nav" id="nav">
 
     <div class="row nav-bar">
       <div class='col-sm-offset-1 col-sm-1'>
@@ -19,7 +23,7 @@
 
             
       <% if (user) { %>
-        <div class='col-sm-7 login-container'>
+        <div class='col-sm-6 login-container'>
           <button class="view-profile" type="button"><a href="/<%= username %>/profile">View profile</a></button>
           <form action="/logout" method="POST" >
             <input class="logout" type="submit" value="Log out"></p>
@@ -28,7 +32,7 @@
             <button class='plus-button'><i class="fas fa-plus-circle"></i>&nbsp; Add</button>
         </div>
         
-        <div class='col-sm-10'>
+        <div class='col-sm-9'>
           <div class="row">
             <section class="new-posts">
               <a href="/post">Add new resource</a>
@@ -38,7 +42,7 @@
         </div>
 
       <% } else { %>
-        <div class='col-sm-6 login-container'>
+        <div class='col-sm-5 login-container'>
           <form action="/" method="POST" >
             <input type="username" name="username" placeholder="Username"required>
             <input class="login-button" type="submit" value="Login">
@@ -56,5 +60,4 @@
           </div>
         </div>
 
-    <!-- <div class='nav-border'></div> -->
-</nav>
+      </nav>

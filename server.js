@@ -29,14 +29,13 @@ const collectiondetailsRoutes = require("./routes/collectiondetails");
 const indexDataRoutes = require("./routes/index-data");
 const userscollectionRoutes = require("./routes/userscollection");
 const commentsRoutes = require("./routes/comments");
-const resourceTitle = require("./routes/resources-title");
-const resourceTopic = require("./routes/resources-topic");
-const resourceUrl = require("./routes/resources-url");
+const resourcePage = require("./routes/resources-page");
 const likes = require("./routes/likes");
-const rates = require("./routes/ratings")
+const rates = require("./routes/ratings");
 const editProfileRoutes = require("./routes/editprofile");
 const profileRoutes = require("./routes/profile-data");
 const searchtopicRoutes = require("./routes/searchtopic");
+const userheaderRoutes = require("./routes/userprofileheader");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -63,14 +62,13 @@ app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
 app.use("/api/index-data", indexDataRoutes(knex));
 app.use("/api/userscollection", userscollectionRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
-app.use("/api/resources-title", resourceTitle(knex));
-app.use("/api/resources-topic", resourceTopic(knex));
-app.use("/api/resources-url", resourceUrl(knex));
+app.use("/api/resources-page", resourcePage(knex));
 app.use("/api/likes", likes(knex));
 app.use("/api/ratings", rates(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
 app.use("/api/profile", profileRoutes(knex));
 app.use("/api/searchtopic", searchtopicRoutes(knex));
+app.use("/api/userprofileheader", userheaderRoutes(knex));
 
 
 function checkUsername(userid){
@@ -81,9 +79,11 @@ function checkUsername(userid){
     } else {
       return Promise.resolve(0)
     }
-    console.log("its after knex query");
   });
 };
+
+
+
 
 // Home page
 app.get("/", (req, res) => {
@@ -281,10 +281,6 @@ app.post("/:username/post/resource", (req, res) => {
   }  
 });
 
-// app.post('/:username/post/collections', (req, res) => {
-//   console.log()
-// })
-
 // resource details page
 app.get("/:resourceid", (req, res) => {
   if (req.session.userid) {
@@ -355,6 +351,7 @@ app.post("/:resourceid/rate", (req, res) => {
   })
 });
 
+
 // Edit page
 app.get("/:resourceid/edit/post", (req, res) => {
   const userId = req.session.userid;
@@ -368,7 +365,7 @@ app.get("/:resourceid/edit/post", (req, res) => {
       if (e.id == undefined) {
         return undefined;
       } else {
-        return e.id == resourceid;
+        return e.id == resourceid
       }  
     })
       if (found == undefined) {
@@ -430,13 +427,12 @@ var promise1 = new Promise(function(resolve, reject) {
 
 function checkUserId(username){
   return knex.select("id").from("users").where('username',username)
-  .then(function (users) {
+  .then((users) => {
     if(users.length>0) {
       return Promise.resolve(users[0].id);
     } else {
       return Promise.resolve(0)
     }
-    console.log("its after knex query");
   });
 }
 

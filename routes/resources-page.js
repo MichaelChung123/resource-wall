@@ -9,7 +9,7 @@ module.exports = (knex) => {
   router.get("/", (req, res) => {
     const referer = req.headers.referer.split('/');
     knex
-      .select("title")
+      .select("*")
       .from("resources")
       .where("id", referer[3])
       .then((results) => {

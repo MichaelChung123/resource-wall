@@ -19,39 +19,36 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/comments.js"></script>
     <script type="text/javascript" src="/scripts/likes.js"></script>
-    <script type="text/javascript" src="/scripts/title.js"></script>
-    <script type="text/javascript" src="/scripts/topic.js"></script>
-    <script type="text/javascript" src="/scripts/url.js"></script> 
+    <script type="text/javascript" src="/scripts/resourcepage.js"></script>
     <script type="text/javascript" src="/scripts/rate.js"></script>
 
     <% include ./partial/header.ejs %>
   </head>
   <body>
     <main class="body">
+      <div class="whole-container">
+        <button class="edit-resource"><a href="<%=resId%>/edit/post">Edit</a></button>
+        <div class="resourceid-title"></div><hr>
+        <div class="avg-rated"></div><br>
 
-      <button class="edit-resource"><a href="<%=resId%>/edit/post">Edit</a></button>
-
-      <div class="resourceid-title"></div><hr>
-      <div class="avg-rated"></div><br>
-
-    <div class="resource-container">
-      <div class="resourceid-topic"><h3>Topics:</h3></div>
-      <div class="resourceid-url"><h3>URL: </h3></div><br>
+        <div class="resource-container">  
+          <div class="resourceid-topic"><h3>Topics:</h3></div>
+          <div class="resourceid-url"><h3>URL: </h3></div><br>
           
-      <form action="<%=resId%>/comments/" method="POST">
-        <h3>Comment</h3>
-          <div class="comment-container">
-            <textarea name="rcomment" type="text"></textarea> <br><br>
-            <input type="submit" value="comment">
-          </div></br>  
-      </form>
-    
-      <div class="row">
-        <!-- <div class="col-md-12"> -->
-          <form class="like-form" action="<%=resId%>/like/" method="POST">
-            <div class="like-count"></div>
-            <input class="button-like" type="image" src="../images/like.png" alt="Submit" height='20px' width='20px'>
+          <form action="<%=resId%>/comments/" method="POST">
+            <h3>Comment</h3>
+              <div class="comment-container">
+                <textarea name="rcomment" type="text"></textarea> <br><br>
+                <input type="submit" value="comment">
+              </div></br>  
           </form>
+    
+          <!-- <div class="row"> -->
+        <!-- <div class="col-md-12"> -->
+            <form class="like-form" action="<%=resId%>/like/" method="POST">
+              <div class="like-count"></div>
+              <input class="button-like" type="image" src="../images/like.png" alt="Submit" height='20px' width='20px'>
+            </form>
 
             <form class="rating" action="<%=resId%>/rate" method="POST">
               <input class="rate" type="submit" id="star1" name="rating" value="1" /><label for="star1" title="Very-bad">1 star</label> 
@@ -61,13 +58,12 @@
               <input class="rate" type="submit" id="star5" name="rating" value="5" /><label for="star5" title="Excellent">5 stars</label>
             </form>      
         <!-- </div> -->
-      </div>
-    </div> 
-      <p>Comments</p><hr>
-      <div class="all-comments">
-      </div>
-      
-         
+          <!-- </div> -->
+        </div> 
+        <p>Comments</p><hr>
+          <div class="all-comments">
+          </div>
+      </div>  
     </main>
   </body>
 </html>

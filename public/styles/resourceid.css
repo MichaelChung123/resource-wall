@@ -1,6 +1,10 @@
 .body {
-    margin: auto;
-    width: 45em;
+
+}
+.whole-container {
+    position: absolute;
+    margin-top: 15em;
+    width: 100%;
 }
 
 article {
@@ -11,7 +15,7 @@ article {
 }
 
 .edit-resource {
-    margin: 0.7em;
+    margin: 0.5em;
     float: right;
     border: none;
     background-color: #4169e1;

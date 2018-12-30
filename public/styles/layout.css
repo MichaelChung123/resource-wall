@@ -1,48 +1,8 @@
-body h1 {
-  color: #244751;
-  position: relative;
-  top: 5px;
-  right: 15px;
-}
-
-.login-button {
-  border: none;
-  background-color: #4169e1;
-  color: white;
-  padding: 0.3em 0.8em 0.3em 0.8em;
-  border-radius: 0.5em;
-}
-
-.logo {
-  float: left;
-  position: relative;
-  margin-top: 0.3em;
-  margin-left: 2em;
-  height: 6.5em;
-  padding: 5px;
-}
-
-.logout {
-  border: none;
-  background-color: #4169e1;
-  color: white;
-  padding: 0.3em 0.8em 0.3em 0.8em;
-  border-radius: 0.5em;
-  height: 3em;
-  width: 7em;
-  margin-right: 1em;
-}
-
-.plus-button {
-  border: none;
-  background-color: #4169e1;
-  color: white;
-  padding: 0.3em 0.8em 0.3em 0.8em;
-  border-radius: 0.5em;
-  height: 3em;
-  width: 7em;
-  margin-right: 1em;
-  font-size: 1em;
+#index-container {
+  position: absolute;
+  margin-top: 15em;
+  margin-left: 8em;
+  margin-right: 8em;
 }
 
 .post-avatar {
@@ -57,72 +17,6 @@ body h1 {
   position: relative;
   color: #4169e1;
   letter-spacing: 0.06em;
-}
-
-.view-profile {
-  border: none;
-  background-color: #4169e1;
-  height: 3em;
-  width: 7em;
-  border-radius: 0.5em;
-  margin-right: 1em;
-}
-
-.view-profile a {
-  border: none;
-  text-decoration: none;
-  padding: 0;
-  color: white;
-}
-
-.new-posts {
-  display: none;
-}
-
-.new-posts a {
-  float: right;
-  border-radius: 0.5em;
-  border: 0.1em solid #4169e1;
-  padding: 0.5em;
-  margin-right: 0.5em;
-  margin-bottom: 1em;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.search-bar {
-  background-color: #4169e1;
-  color: white;
-  border: none;
-  font-size: 1.4em;
-  padding: 10px;
-}
-
-.search-submit {
-  font-weight: 300;
-  background-color: #4169e1;
-  color: white;
-  border: none;
-  font-size: 1.6em;
-  margin-right: 0.7em;
-}
-
-.search-area {
-  display: flex;
-  background-color: #4169e1;
-  justify-content: flex-end;
-  margin-bottom: 2em;
-  margin-top: 1em;
-}
-
-.login-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1em;
-}
-
-.search-container {
-  margin-top: 5px;
 }
 
 .post-container {
