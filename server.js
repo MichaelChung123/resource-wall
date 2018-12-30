@@ -79,9 +79,11 @@ function checkUsername(userid){
     } else {
       return Promise.resolve(0)
     }
-    console.log("its after knex query");
   });
 };
+
+
+
 
 // Home page
 app.get("/", (req, res) => {
@@ -278,10 +280,6 @@ app.post("/:username/post/resource", (req, res) => {
     })
   }  
 });
-
-// app.post('/:username/post/collections', (req, res) => {
-//   console.log()
-// })
 
 // resource details page
 app.get("/:resourceid", (req, res) => {
