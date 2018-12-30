@@ -21,16 +21,16 @@ module.exports = (knex) => {
           .where('collections.user_id', user[0].id)
           .then((collections) => {
             user[0].collections = collections;
-            res.json(user[0]);
+            knex
+              .select("*")
+              .from("resources")
+              .where("user_id", user[0].id)
+              .then((resources) => {
+                user[0].resources = resources;
+                res.json(user[0]);
+              });
           });
       });
-
-    // knex("likes")
-    //   .where('resource_id', referer[3])
-    //   .count('resource_id')
-    //   .then((results) => {
-    //     res.json(results);
-    //   });
   });
 
   return router;

@@ -1,23 +1,24 @@
-/* #post-cols{
-    opacity: 0.5;
-}
-#collection-cols{
-    opacity: 0.5;
-} */
-
 .hover-collection {
     opacity: 0.5;
+    color: black;
+
 }
 
 .hover-post {
     opacity: 0.5;
+    color: black;
+
 }
 
 .hover-collection:hover {
     opacity: 1;
+    color: black;
+
 }
 .hover-post:hover {
     opacity: 1;
+    color: black;
+
 }
 
 .user-profile {
@@ -28,13 +29,8 @@
 }
 
 .user-avatar {
-    /* margin: 10px 10px 10px 10px; */
     margin-top: 25px;
 }
-
-/* .fa-heart {
-    font-size: 100px;
-} */
 
 .icon-wrapper {
     text-align: center;
@@ -50,7 +46,6 @@ header {
 .content-icons {
     font-size: 60px;
 }
-
 
 .collection1 {
     border: solid black;

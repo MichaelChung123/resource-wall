@@ -83,8 +83,6 @@ function checkUsername(userid){
 };
 
 
-
-
 // Home page
 app.get("/", (req, res) => {
   if (req.session.userid) {
