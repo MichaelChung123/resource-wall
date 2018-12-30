@@ -29,11 +29,9 @@ const collectiondetailsRoutes = require("./routes/collectiondetails");
 const indexDataRoutes = require("./routes/index-data");
 const userscollectionRoutes = require("./routes/userscollection");
 const commentsRoutes = require("./routes/comments");
-const resourceTitle = require("./routes/resources-title");
-const resourceTopic = require("./routes/resources-topic");
-const resourceUrl = require("./routes/resources-url");
+const resourcePage = require("./routes/resources-page");
 const likes = require("./routes/likes");
-const rates = require("./routes/ratings")
+const rates = require("./routes/ratings");
 const editProfileRoutes = require("./routes/editprofile");
 const profileRoutes = require("./routes/profile-data");
 const searchtopicRoutes = require("./routes/searchtopic");
@@ -64,9 +62,7 @@ app.use("/api/collectiondetails", collectiondetailsRoutes(knex));
 app.use("/api/index-data", indexDataRoutes(knex));
 app.use("/api/userscollection", userscollectionRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
-app.use("/api/resources-title", resourceTitle(knex));
-app.use("/api/resources-topic", resourceTopic(knex));
-app.use("/api/resources-url", resourceUrl(knex));
+app.use("/api/resources-page", resourcePage(knex));
 app.use("/api/likes", likes(knex));
 app.use("/api/ratings", rates(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
@@ -358,6 +354,7 @@ app.post("/:resourceid/rate", (req, res) => {
   })
 });
 
+
 // Edit page
 app.get("/:resourceid/edit/post", (req, res) => {
   const userId = req.session.userid;
@@ -367,13 +364,18 @@ app.get("/:resourceid/edit/post", (req, res) => {
   .select('id') 
   .where('user_id', userId)
   .then((r) => {
-    for (let x of r){
-      if (x.id == resourceid) {
-        res.render("urls_edit", templateVars);
+    let found = r.find((e) => {
+      if (e.id == undefined) {
+        return undefined;
       } else {
+        return e.id == resourceid
+      }  
+    })
+      if (found == undefined) {
         res.send(`this is not your post`);
+      } else if (found.id == resourceid) {
+        res.render("urls_edit", templateVars);
       }
-    }
   });
 });
 
@@ -419,13 +421,12 @@ var promise1 = new Promise(function(resolve, reject) {
 
 function checkUserId(username){
   return knex.select("id").from("users").where('username',username)
-  .then(function (users) {
+  .then((users) => {
     if(users.length>0) {
       return Promise.resolve(users[0].id);
     } else {
       return Promise.resolve(0)
     }
-    console.log("its after knex query");
   });
 }
 

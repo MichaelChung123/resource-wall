@@ -1,16 +1,15 @@
-.user-div {
-    height: 15em;
-}
-
-
 .user-avatar {
     height: 15em;
     float: left;
 }
 
 h3 {
-    position: fixed;
-    flex: bottom;
+    font-size: 3em;
+    margin-left: 6em;
+}
+
+hr {
+    width: 80em;
 }
 
 

@@ -3,6 +3,7 @@ $(() => {
       method: "GET",
       url: "/api/userscollection"
     }).done((collectiondetails) => {
+      console.log("Collection details: ", collectiondetails);
       for(details of collectiondetails) {
         const $resource = $("<article>").addClass("resource").appendTo($("#resource"));
         const $header = $("<header>").appendTo($resource);
