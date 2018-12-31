@@ -24,10 +24,10 @@
 <header>
         <% include ./partial/header.ejs %>
 </header>
-<body>
-    <main class="container">
+<body> 
+    <main id="edit-profile-container">
         <div class='row'>
-            <div class='col-sm-offset-2 col-sm-3'>
+            <div class='col-sm-offset-3'>
                 <div class='edit-title'>
                 <h1>Edit your profile</h1>
                 </div>
@@ -37,8 +37,10 @@
             <form id="updateprofile" action="/editprofile" method="POST" Content-Type="application/x-www-form-urlencoded">
                 <div class='user-container'>
                     <div class='row'>
-                        <div class='user-data col-sm-offset-2 col-sm-3'>
-                            <img src="/images/bobross.jpeg" class="img-circle profile-img"> 
+                        <div class="profile-img col-sm-offset-3">
+
+                        </div>
+                        <div class='user-data col-sm-offset-3'>
                             <div class="user-info">                       
                             <label class="name"><h3>Name:</h3></label>
                             </br>

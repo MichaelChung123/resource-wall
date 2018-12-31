@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Register</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="/styles/register.css" type="text/css" />
+        <% include ./partial/header.ejs %>
+    </head>
+    <body>
+        <div class="register-container">
+            <form action="/register" method="POST">
+                <label class="name">Name:</label> 
+                <input type="text" name="Rname"><br>
+                <label class="username">Username:</label>
+                <input type="text" name="Rusername"><br>
+                <label class="password">Password:</label>
+                <input type="text" name="Rpassword"><br>
+                <label class="photo">Photo:</label> 
+                <input type="text" name="Rphoto"><br>
+                <button class="register-button-button" type="submit">Register</button>
+            </form>
+        </div>    
+    </body>
+</html>

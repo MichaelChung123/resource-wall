@@ -35,7 +35,7 @@ const rates = require("./routes/ratings");
 const editProfileRoutes = require("./routes/editprofile");
 const profileRoutes = require("./routes/profile-data");
 const searchtopicRoutes = require("./routes/searchtopic");
-const userheaderRoutes = require("./routes/userprofileheader");
+const userheaderRoutes = require("./routes/userheader");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -52,6 +52,7 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
+
 app.use(express.static("public"));
 
 // Mount all resource routes
@@ -68,7 +69,7 @@ app.use("/api/ratings", rates(knex));
 app.use("/api/editprofile", editProfileRoutes(knex));
 app.use("/api/profile", profileRoutes(knex));
 app.use("/api/searchtopic", searchtopicRoutes(knex));
-app.use("/api/userprofileheader", userheaderRoutes(knex));
+app.use("/api/userheader", userheaderRoutes(knex));
 
 
 function checkUsername(userid){
@@ -81,8 +82,6 @@ function checkUsername(userid){
     }
   });
 };
-
-
 
 
 // Home page
@@ -235,6 +234,27 @@ app.get("/:username/:collectionname", (req, res) => {
   }
 });
 
+app.get("/register", (req, res) => {
+  let templateVars = {user: req.session.userid}
+  res.render("urls_register", templateVars)
+})
+
+app.post("/register", (req,res) => {
+  const {Rname, Rusername, Rpassword, Rphoto} = req.body;
+  if (!Rname || !Rusername || !Rpassword || !Rphoto) {
+    res.status(400).send("please fill in all the fields")
+  } else {
+    knex('users')
+    .insert({
+      name: Rname,
+      username: Rusername,
+      password: Rpassword,
+      photo: Rphoto
+    }).then(() => {
+      res.redirect("/")
+    })
+  }
+})
 // Post page + inserting resource into collections
 app.get("/post", (req, res) => {
   if (req.session.userid) {
@@ -354,9 +374,9 @@ app.post("/:resourceid/rate", (req, res) => {
 
 // Edit page
 app.get("/:resourceid/edit/post", (req, res) => {
+  let result = checkUsername(req.session.userid);
   const userId = req.session.userid;
   const resourceid = req.params.resourceid;
-  const templateVars = {resId: resourceid};
   knex('resources')
   .select('id') 
   .where('user_id', userId)
@@ -371,7 +391,14 @@ app.get("/:resourceid/edit/post", (req, res) => {
       if (found == undefined) {
         res.send(`this is not your post`);
       } else if (found.id == resourceid) {
-        res.render("urls_edit", templateVars);
+        result.then((username) =>{
+          let templateVars = {
+            user: req.session.userid,
+            username: username,
+            resId: req.params.resourceid
+          }
+          res.render("urls_edit", templateVars);
+        });
       }
   });
 });

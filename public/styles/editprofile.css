@@ -1,4 +1,10 @@
- div.edit-title h1 {
+#edit-profile-container {
+    position: absolute;
+    margin-top: 15em;
+    margin-left:8em;
+} 
+
+div.edit-title h1 {
     color: #4169e1;
     font-size: 2.5em;
 }
@@ -13,9 +19,13 @@
  
 .profile-img {
      margin: 2em 4em 2em 2em;
-     height: 15em;
      float: left;
 }
+
+.profile-img img {
+    height: 15em;
+}
+
 
 .user-data {
      display: flex;

@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Home Page</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Home Page</title>
 
-    <!-- Linking Rating System -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Linking Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="../public/scripts/mouse-hover.js"></script>
+  <!-- Linking Rating System -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Linking Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-    <!-- Including the index-data.js script-->
-    <script type="text/javascript" src="/scripts/index-data.js"></script>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
-    <% include ./partial/header.ejs %>
+  <!-- Including the index-data.js script-->
+  <script type="text/javascript" src="/scripts/index-data.js"></script>
 
-  </head>
+  <% include ./partial/header.ejs %>
 
-  <body id="page">
-    
-<main id="index-container" class='container main-container'>
+</head>
 
-  <div class='row'>
-        <div class='col-sm-5'>
-          <div class="sort-by">
+<body id="page">
+
+  <main id="index-container" class='container main-container'>
+
+    <div class='row'>
+      <div class='col-sm-5'>
+        <div class="sort-by">
           <label>Sort By:</label>
           <form>
             <select name="dropdown">
@@ -45,24 +46,67 @@
             </select>
           </form>
         </div>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='body-container'>
+        <div id='index-content'>
+          
+          <!-- <div class='col-sm-4'>
+            <div class='post-container'>
+              <div class='row post-top'>
+                <div class='col-sm-12'>
+                  <img src="/images/bobross.jpeg" class="img-circle post-avatar" alt="icon-boy" />
+                  <label>Bob Ross</label>
+                </div>
+              </div>
+              <div class='row post-mid'>
+                <div class='col-sm-12'>
+                  <label>Title</label>
+                  <p>Description</p>
+                </div>
+              </div>
+              <div class='row post-bot'>
+                <div class='col-sm-12'>
+                  <label>Topic1, Topic2, Topic3</label>
+                </div>
+              </div>
+              <div class='row post-footer'>
+                <div class='icon-container'>
+                  <div class='col-sm-1'>
+                    <i class="far fa-heart"></i>
+                  </div>
+
+                  <div class='col-sm-1'>
+                    <i class="far fa-comment"></i>
+                  </div>
+
+                  <div class='col-sm-6'>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
         </div>
       </div>
-
-      <div class='row'>
-        <div class='body-container'>
-
-        </div>
-      </div>
+    </div>
 
     </br>
     </br>
 
-      <div class="row">
-        <div id="index-footer">Brought to you by Daniel, Michael, and Negar</div>
-      </div>
-  
-      </main>
+    <div class="row">
+      <div id="index-footer">Brought to you by Daniel, Michael, and Negar</div>
+    </div>
 
-  </body>
-  
+  </main>
+
+</body>
+
 </html>
