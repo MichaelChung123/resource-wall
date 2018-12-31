@@ -55,49 +55,48 @@ function createCollections(users) {
   return $content[0];
 }
 
-function createPosts(users) {
-  console.log(users);
-  let content = '';
-  const resources = users.resources;
+// function createPosts(users) {
+//   let content = '';
+//   const resources = users.resources;
 
-  for (const index in resources) {
-    if (index % 2 === 0) {
-      content += `
-        <div class='col-sm-6'>
-          <div class='col-sm-6'>
-            <a href='/${resources[index].id}' class='col-sm-offset-1 col-sm-2 collection1 hover-post'>
-              <label>${resources[index].title}</label>
-              <div class='row'>
-                <label>${resources[index].topic}</label>
-              </div>
-              <div class='row'>
-                <label>${users.username}</label>
-              </div>
-            </a>
-          </div>
-        </div>
-        `;
-    } else {
-      content += `
-        <div class='col-sm-6'>
-          <a href='/${resources[index].id}' class='col-sm-2 collection2 hover-post'>
-            <label>${resources[index].title}</label>
-            <div class='row'>
-              <label>${resources[index].topic}</label>
-            </div>
-            <div class='row'>
-              <label>${users.username}</label>
-            </div>
-          </a>
-        </div>
-        `;
-    }
-  }
+//   for (const index in resources) {
+//     if (index % 2 === 0) {
+//       content += `
+//         <div class='col-sm-6'>
+//           <div class='col-sm-6'>
+//             <a href='/${resources[index].id}' class='col-sm-offset-1 col-sm-2 collection1 hover-post'>
+//               <label>${resources[index].title}</label>
+//               <div class='row'>
+//                 <label>${resources[index].topic}</label>
+//               </div>
+//               <div class='row'>
+//                 <label>${users.username}</label>
+//               </div>
+//             </a>
+//           </div>
+//         </div>
+//         `;
+//     } else {
+//       content += `
+//         <div class='col-sm-6'>
+//           <a href='/${resources[index].id}' class='col-sm-2 collection2 hover-post'>
+//             <label>${resources[index].title}</label>
+//             <div class='row'>
+//               <label>${resources[index].topic}</label>
+//             </div>
+//             <div class='row'>
+//               <label>${users.username}</label>
+//             </div>
+//           </a>
+//         </div>
+//         `;
+//     }
+//   }
 
-  let $content = $('#post-cols').html(content);
+//   let $content = $('#post-cols').html(content);
 
-  return $content[0];
-}
+//   return $content[0];
+// }
 
 
 function renderResources(usersArray) {
@@ -105,5 +104,5 @@ function renderResources(usersArray) {
 
   $('.body-container').append(createUserProfile(usersArray));
   $('.body-container').append(createCollections(usersArray));
-  $('.body-container').append(createPosts(usersArray));
+  // $('.body-container').append(createPosts(usersArray));
 }

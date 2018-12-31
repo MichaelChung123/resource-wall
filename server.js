@@ -36,6 +36,7 @@ const editProfileRoutes = require("./routes/editprofile");
 const profileRoutes = require("./routes/profile");
 const searchtopicRoutes = require("./routes/searchtopic");
 const userheaderRoutes = require("./routes/userheader");
+const profileLikesRoutes = require("./routes/profilelikes");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -70,6 +71,7 @@ app.use("/api/editprofile", editProfileRoutes(knex));
 app.use("/api/profile", profileRoutes(knex));
 app.use("/api/searchtopic", searchtopicRoutes(knex));
 app.use("/api/userheader", userheaderRoutes(knex));
+app.use("/api/profilelikes", profileLikesRoutes(knex));
 
 
 function checkUsername(userid){
