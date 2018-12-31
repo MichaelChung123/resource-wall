@@ -36,21 +36,15 @@ function createResourceElement(users) {
     </div>
     <div class='row post-footer'>
         <div class='icon-container'>
-          <div class='col-sm-1'>
             <i class="far fa-heart"></i>
-          </div>
 
-          <div class='col-sm-1'>
             <i class="far fa-comment"></i>
-          </div>
 
-          <div class='col-sm-6'>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span>
-          </div>
         </div>
     </div>
   </div>

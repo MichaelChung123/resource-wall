@@ -6,15 +6,27 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
         knex('collections').insert({
           user_id: 1, 
-          name: 'mycollection1'
+          name: 'Coding'
         }),
         knex('collections').insert({
           user_id: 2, 
-          name: 'mycollection2'
+          name: 'Lighthouse Resources'
         }),
         knex('collections').insert({
           user_id: 3, 
-          name: 'mycollection3'
+          name: 'Javascript'
+        }),
+        knex('collections').insert({
+          user_id: 1, 
+          name: 'Coding fundamentals'
+        }),
+        knex('collections').insert({
+          user_id: 2, 
+          name: 'Web development'
+        }),
+        knex('collections').insert({
+          user_id: 3, 
+          name: 'My resources'
         })
       ]);
     });
