@@ -11,7 +11,6 @@ module.exports = (knex) => {
       .select("*")
       .from("users")
       .where('username', referer[3])
-      .join
       .then((user) => {
         const profileUser = user[0].id;
         knex
