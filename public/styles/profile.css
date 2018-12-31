@@ -1,87 +1,94 @@
-.hover-collection {
-    opacity: 0.5;
-    color: black;
-
-}
-
-.hover-post {
-    opacity: 0.5;
-    color: black;
-
-}
-
-.hover-collection:hover {
-    opacity: 1;
-    color: black;
-
-}
-.hover-post:hover {
-    opacity: 1;
-    color: black;
-
+header {
+    margin-top: 15em;
 }
 
 .user-profile {
-    margin: 10px 10px 10px 10px;
-    font-size: 50px;
-    position: relative;
-    top: 115px;
+    font-size: 5em;
+    color: #0C36B3;
 }
 
 .user-avatar {
-    margin-top: 25px;
+    height: 18em;
+}
+
+.hover-card {
+    opacity: 0.7;
+
+}
+
+.hover-card:hover {
+    opacity: 1;
 }
 
 .icon-wrapper {
     text-align: center;
-}
-header {
-    margin-top: 180px;
 }
 
 .icon-container {
     font-size: 20px;
 }
 
-.content-icons {
+.content-collections {
     font-size: 3em;
     color: #4169e1;
 }
 
-.collection1 {
-    border: solid black;
-    border-radius: 10px;
-    text-align: center;
-    margin: 10px 10px 10px 85px;
-    height: 200px;
-    width: 150px;
+.content-likes {
+    font-size: 3em;
+    color: #6E41E2;
 }
 
-.collection2 {
-    border: solid black;
+.collection-title {
+    font-weight: 400;
+    font-size: 1.3em;
+    line-break: auto;
+    word-break: keep-all;
+    padding: 1em;
+}
+
+.card1 {
+    border: solid #4169e1;
     border-radius: 10px;
     text-align: center;
-    margin: 10px 10px 10px 40px;
-    height: 200px;
-    width: 150px;
+    margin-bottom: 2em;
+    height: 11em;
+    width: 14em;
+}
+
+.card2 {
+    border: solid #4169e1;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 2em;
+    height: 11em;
+    width: 14em;
 
 }
 
-.post1 {
-    border: solid black;
+.like1 {
+    border: solid #6E41E2;
     border-radius: 10px;
     text-align: center;
-    margin: 10px 10px 10px 220px;
-    height: 200px;
-    width: 150px;
+    margin-bottom: 2em;
+    height: 11em;
+    width: 14em;
+
 }
 
-.post2 {
-    border: solid black;
+.like2 {
+    border: solid #6E41E2;
     border-radius: 10px;
     text-align: center;
-    margin: 10px 10px 10px 40px;
-    height: 200px;
-    width: 150px;
+    margin-bottom: 2em;
+    height: 11em;
+    width: 14em;
 }
 
+.card-topic {
+    font-size: 0.9em;
+    color: grey;
+    padding: 0.7em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

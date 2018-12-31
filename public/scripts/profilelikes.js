@@ -3,7 +3,6 @@ $(() => {
       method: "GET",
       url: "/api/profilelikes"
     }).done((resources) => {
-        console.log("This is my result: ", resources[0]);
         $('.body-container').append(createLikes(resources));
     });
   });
@@ -18,9 +17,11 @@ $(() => {
             content += `
             <div class='col-sm-6'>
                 <div class='col-sm-6'>
-                <a href='/${resource.id}' class='col-sm-offset-1 col-sm-2 collection1 hover-post'>
-                    <label>${resources.title}</label>
-                    <div class='row'>
+                <a href='/${resource.id}' class='col-sm-offset-1 col-sm-2 like1 hover-card'>
+                    <div class='collection-title'>
+                        <label>${resources.title}</label>
+                    </div>
+                    <div class='row card-topic'>
                     <label>${resource.topic}</label>
                     </div>
                 </a>
@@ -30,9 +31,11 @@ $(() => {
         } else {
             content += `
             <div class='col-sm-6'>
-                <a href='/${resource.id}' class='col-sm-2 collection2 hover-post'>
-                <label>${resource.title}</label>
-                <div class='row'>
+                <a href='/${resource.id}' class='col-sm-2 like2 hover-card'>
+                <div class='collection-title'>
+                    <label>${resource.title}</label>
+                </div>
+                <div class='row card-topic'>
                     <label>${resource.topic}</label>
                 </div>
 
