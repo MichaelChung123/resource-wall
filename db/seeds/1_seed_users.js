@@ -6,19 +6,19 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
         // Inserts seed entries
         knex('users').insert({
-          name: 'neg',
+          name: 'Negar',
           username: 'neg',
           password: 'neg',
           photo: 'https://s3.amazonaws.com/lighthouse-compass2/uploads/avatar/custom_avatar/2633/thumb_IMG_8787.jpg'
         }),
         knex('users').insert({
-          name: 'michael',
+          name: 'Michael',
           username: 'michael',
           password: 'michael',
           photo: 'https://s3.amazonaws.com/lighthouse-compass2/uploads/avatar/custom_avatar/2742/thumb_portrait.jpg'
         }),
         knex('users').insert({
-          name: 'daniel',
+          name: 'Daniel',
           username: 'daniel',
           password: 'daniel',
           photo: 'https://s3.amazonaws.com/lighthouse-compass2/uploads/avatar/custom_avatar/2540/thumb_36A4176B-5AF6-4A7F-9F54-8CEE17C14C24.jpeg'
