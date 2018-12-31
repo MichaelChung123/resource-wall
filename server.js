@@ -33,7 +33,7 @@ const resourcePage = require("./routes/resources-page");
 const likes = require("./routes/likes");
 const rates = require("./routes/ratings");
 const editProfileRoutes = require("./routes/editprofile");
-const profileRoutes = require("./routes/profile-data");
+const profileRoutes = require("./routes/profile");
 const searchtopicRoutes = require("./routes/searchtopic");
 const userheaderRoutes = require("./routes/userheader");
 

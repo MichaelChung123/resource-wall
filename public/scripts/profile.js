@@ -4,46 +4,22 @@ $(() => {
     url: "/api/profile"
   }).done((users) => {
     renderResources(users);
-    // createResourceElement(users);
-    // createCollections(users);
-    // createPosts(users);
   });
 });
 
-function createResourceElement(users) {
-  let id = users.id;
+function createUserProfile(users) {
   let name = users.name;
-  let username = users.username;
-  let password = users.password;
   let photo = users.photo;
 
   let $users = $("header").html(`
     <div class='row'>
       <div class='col-sm-4'>
-        <img src='${photo}' class="img-rounded user-avatar" />
+        <img src='${photo}' class="img-circle user-avatar" />
       </div>
       <div class='col-sm-3'>
-        <h1 class='user-profile'>${username}</h1>
+        <h1 class='user-profile'>${name}</h1>
       </div>
     </div>
-
-    <div class='row'>
-            <div class='icon-container'>
-                <div class='col-sm-offset-9 col-sm-1'>
-                    <i class="far fa-heart"></i>
-                    <label>100</label>
-                </div>
-
-                <div class='col-sm-1'>
-                    <i class="far fa-comment"></i>
-                    <label>100</label>
-                </div>
-
-                <div class='col-sm-1'>
-                    <i class="far fa-clipboard"></i>
-                    <label>100</label>
-                </div>
-            </div>
         `);
   return $users[0];
 }
@@ -59,12 +35,6 @@ function createCollections(users) {
           <div class='col-sm-6'>
             <a href='/${users.username}/${collections[index].name}' class='col-sm-offset-1 col-sm-2 collection1 hover-collection'>
               <label>${collections[index].name}</label>
-              <div class='row'>
-                <label>${collections[index].topic}</label>
-              </div>
-              <div class='row'>
-                <label>${users.username}</label>
-              </div>
             </a>
           </div>
         </div>
@@ -74,12 +44,6 @@ function createCollections(users) {
         <div class='col-sm-6'>
           <a href='/${users.username}/${collections[index].name}' class='col-sm-2 collection2 hover-collection'>
             <label>${collections[index].name}</label>
-            <div class='row'>
-              <label>${collections[index].topic}</label>
-            </div>
-            <div class='row'>
-              <label>${users.username}</label>
-            </div>
           </a>
         </div>
         `;
@@ -139,9 +103,7 @@ function createPosts(users) {
 function renderResources(usersArray) {
   $('.body-container').empty();
 
-  $('.body-container').append(createResourceElement(usersArray));
-  console.log(usersArray);
-
+  $('.body-container').append(createUserProfile(usersArray));
   $('.body-container').append(createCollections(usersArray));
   $('.body-container').append(createPosts(usersArray));
 }
