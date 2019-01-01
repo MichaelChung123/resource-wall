@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/postresource.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/post_collection_menu.js"></script>
@@ -17,30 +17,43 @@
 
   <body>
     <% include ./partial/header.ejs %>
-    <h1>Post your new resource!</h1>
-    <form id="post-form" action="/<%=username%>/post/resource" method="POST">
-      URL: <input type="text" name="rurl">
-    </br>
-    </br>
-      Title: <input type="text" name="rtitle">
-    </br>
-    </br>
-    <div class='row'>
-        <div class='col-sm-5'>
+    <main id="post-container">
+      <h1>Post your new resource!</h1>
+      <form id="post-form" action="/<%=username%>/post/resource" method="POST">
 
-              <label>Collection:</label>
-                <select class="collection-menu" name="dropdown"></select>
+      <div class="row post-url">
+        <label>URL: </label>
+      </br>
+        <input type="text" name="rurl">
+      </div>
 
-        </div>
-    </div>
-    <br>
-      Description: <br>
-      <textarea name="rdescription"></textarea>
-      <br><br>
-      Topic: <input name="rtopic">
-    </br>
-    </br>
-      <input type="submit" value="Post">
+      <div class="row post-title">
+        <label>Title:</label>
+      </br>
+        <input type="text" name="rtitle">
+      </div>
+      
+      <div class='row post-collection'>
+          <label>Collection:</label>
+        </br>
+          <select class="collection-menu" name="dropdown"></select>
+      </div>
+
+      <div class="row post-description">
+        <label>Description: </label>
+      </br>
+        <textarea name="rdescription"></textarea>
+      </div>
+
+      <div class="row post-topic">
+        <label>Topic: </label>
+      </br>
+        <input name="rtopic">
+      </div>
+
+      </br>
+        <input class="submit-button" type="submit" value="Post">
+    </main>
       
     </form>
   </body>

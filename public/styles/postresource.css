@@ -1,0 +1,53 @@
+#post-container {
+    position: absolute;
+    margin-top: 15em;
+    margin-left: 10em;
+}
+
+#post-container h1 {
+    color: #4169e1;
+    font-size: 2.5em;
+    margin-bottom: 1em;
+}
+
+#post-container label {
+    font-size: 1.5em;
+    color: #4169e1;
+    font-weight: 400;
+}
+
+#post-container input {
+    font-size: 1.3em;
+    margin-bottom: 1.3em;
+    width: 30em;
+}
+
+#post-container textarea {
+    font-size: 1.3em;
+    margin-bottom: 1.3em;
+    width: 30em;
+}
+
+#post-container .collection-menu {
+    width: 20em;
+    margin-bottom: 1.3em;
+    font-size: 1.3em;
+}
+
+#post-container .submit-button {
+    background-color: #4169e1;
+    color: white;
+    font-size: 1.4em;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 0.3em;
+    width: 7em;
+    padding: 0.3em;
+    margin-right: 1em;
+    float: left;
+    margin-bottom: 5em;
+}
+
+#post-container form {
+    float: left;
+}
