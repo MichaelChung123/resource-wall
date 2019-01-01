@@ -86,3 +86,11 @@ h3 {
 .all-comments {
     margin: 0 10em;
 }
+
+.goto-button {
+    background-color: #4169e1;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    height: 2.5em;
+}
