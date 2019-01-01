@@ -3,7 +3,6 @@ $(() => {
     method: "GET",
     url: "/api/index-data"
   }).done((indexData) => {
-    console.log(indexData);
     renderResources(indexData);
   });
 });

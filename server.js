@@ -230,7 +230,8 @@ app.get("/:username/:collectionname", (req, res) => {
   } else {
     let templateVars = {
       user: req.session.userid,
-      usercollection: req.params.username
+      usercollection: req.params.username,
+      username: undefined
     }
     res.render("usercollection", templateVars);
   }
@@ -324,7 +325,8 @@ app.get("/:resourceid", (req, res) => {
   } else {
     let templateVars = {
       user: req.session.userid,
-      resId: req.params.resourceid
+      resId: req.params.resourceid,
+      resourceOwner: null
     }
     res.render('urls_show_resources', templateVars);
   } 
