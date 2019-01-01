@@ -10,8 +10,8 @@ module.exports = (knex) => {
     const topics = referer[1].split('+').join(' ');
     knex
       .select("*")
-      .from('resources')
-      .join('users', 'resources.user_id', 'users.id')
+      .from('users')
+      .join('resources', 'resources.user_id', 'users.id')
       .where('topic', 'like', `%${topics}%`)
       .then((results) => {
         res.json(results);
