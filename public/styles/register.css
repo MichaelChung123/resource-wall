@@ -1,0 +1,34 @@
+.register-container {
+    position: absolute;
+    margin-top: 15em;
+}
+
+.register-button-button {
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    border: none;
+    background-color: #4169e1;
+    color: white;
+    padding: 0.3em 0.8em 0.3em 0.8em;
+    border-radius: 0.5em;
+}
+
+.name {
+    font-size: 1.5em;
+    color: #4169e1;
+}
+
+.username {
+    font-size: 1.5em;
+    color: #4169e1;
+}
+
+.password {
+    font-size: 1.5em;
+    color: #4169e1;
+}
+
+.photo {
+    font-size: 1.5em;
+    color: #4169e1;
+}

@@ -236,6 +236,27 @@ app.get("/:username/:collectionname", (req, res) => {
   }
 });
 
+app.get("/register", (req, res) => {
+  let templateVars = {user: req.session.userid}
+  res.render("urls_register", templateVars)
+})
+
+app.post("/register", (req,res) => {
+  const {Rname, Rusername, Rpassword, Rphoto} = req.body;
+  if (!Rname || !Rusername || !Rpassword) {
+    res.status(400).send("please fill in all the fields")
+  } else {
+    knex('users')
+    .insert({
+      name: Rname,
+      username: Rusername,
+      password: Rpassword,
+      photo: Rphoto
+    }).then(() => {
+      res.redirect("/")
+    })
+  }
+})
 // Post page + inserting resource into collections
 app.get("/post", (req, res) => {
   if (req.session.userid) {
