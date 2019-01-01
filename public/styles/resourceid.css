@@ -1,7 +1,3 @@
-.body {
-
-}
-
 .whole-container {
     position: absolute;
     margin-top: 15em;
@@ -54,10 +50,6 @@ article {
     font-size: 3em;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 50c3bd2cdbfb6a9bc1645473c95ec95dc2495010
 h3 {
     font-weight: 500;
     font-size: 1.5em;
@@ -83,7 +75,7 @@ h3 {
     border-radius: 10px;
 }
 
-.comment-container input {
+.comment-container .submit-comment {
     background-color: #4169e1;
     border: none;
     color: white;
@@ -94,8 +86,3 @@ h3 {
 .all-comments {
     margin: 0 10em;
 }
-
-/* .created-by {
-    display: inline;
-    float: right;
-} */
