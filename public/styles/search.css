@@ -5,31 +5,10 @@
 
 }
 
-article.add-resource {
-    float: left;
-    margin-top: 1.3em;
-    margin-right: 1em;
-    margin-bottom: 1em;
-    height: 6.7em;
-    border-radius: 8px;
-    border: 3px solid #4169e1;
-    background-color: #4169e1;
-    opacity: 1;
-    padding: 20px;
-    text-align: center;
-    font-size: 1.5em;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-article.add-resource .icon {
-    font-size: 2em;
-}
-
 article.resource {
     float: left;
     width: 20em;
-    height: 10em;
+    height: 12em;
     margin-left: 1.5em;
     margin-top: 2em;
     margin-right: 1.5em;

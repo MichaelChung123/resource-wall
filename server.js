@@ -308,13 +308,19 @@ app.get("/:resourceid", (req, res) => {
   if (req.session.userid) {
     let result = checkUsername(req.session.userid);
     result.then((username) =>{
-      let templateVars = {
-        user: req.session.userid,
-        username: username,
-        resId: req.params.resourceid,
-      };
-      res.render("urls_show_resources", templateVars);
-    })
+      knex('resources')
+      .select('*') 
+      .where('resources.id', req.params.resourceid)
+      .then((resourceResult) => {
+        let templateVars = {
+          user: req.session.userid,
+          username: username,
+          resourceOwner: resourceResult[0].user_id,
+          resId: req.params.resourceid
+        };
+          res.render("urls_show_resources", templateVars);
+      });
+    });
   } else {
     let templateVars = {
       user: req.session.userid,
@@ -389,24 +395,11 @@ app.get("/:resourceid/edit/post", (req, res) => {
     .select('*') 
     .where('resources.id', resourceid)
     .then((resourceResult) => {
-      console.log("This is my id: ", resourceResult[0]);
       if (resourceResult[0].user_id === userId) {
         res.render("urls_edit", templateVars);
       } else {
         res.send("This is not your post");
       }
-      // let found = r.find((e) => {
-      //   if (e.id == undefined) {
-      //     return undefined;
-      //   } else {
-      //     return e.id == resourceid
-      //   }  
-      // })
-      //   if (found == undefined) {
-      //     res.send(`this is not your post`);
-      //   } else if (found.id == resourceid) {          
-      //       res.render("urls_edit", templateVars);
-      //   }
     });
   });
 });
