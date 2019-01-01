@@ -377,31 +377,37 @@ app.post("/:resourceid/rate", (req, res) => {
 // Edit page
 app.get("/:resourceid/edit/post", (req, res) => {
   const result = checkUsername(req.session.userid);
-  const userId = req.session.userid;
-  const resourceid = req.params.resourceid;
-  knex('resources')
-  .select('id') 
-  .where('user_id', userId)
-  .then((r) => {
-    let found = r.find((e) => {
-      if (e.id == undefined) {
-        return undefined;
+  result.then((username) => {
+    let templateVars = {
+      user: req.session.userid,
+      username: username,
+      resId: req.params.resourceid
+    }
+    const userId = req.session.userid;
+    const resourceid = req.params.resourceid;
+    knex('resources')
+    .select('*') 
+    .where('resources.id', resourceid)
+    .then((resourceResult) => {
+      console.log("This is my id: ", resourceResult[0]);
+      if (resourceResult[0].user_id === userId) {
+        res.render("urls_edit", templateVars);
       } else {
-        return e.id == resourceid
-      }  
-    })
-      if (found == undefined) {
-        res.send(`this is not your post`);
-      } else if (found.id == resourceid) {
-        result.then((username) =>{
-          let templateVars = {
-            user: req.session.userid,
-            username: username,
-            resId: req.params.resourceid
-          }
-          res.render("urls_edit", templateVars);
-        });
+        res.send("This is not your post");
       }
+      // let found = r.find((e) => {
+      //   if (e.id == undefined) {
+      //     return undefined;
+      //   } else {
+      //     return e.id == resourceid
+      //   }  
+      // })
+      //   if (found == undefined) {
+      //     res.send(`this is not your post`);
+      //   } else if (found.id == resourceid) {          
+      //       res.render("urls_edit", templateVars);
+      //   }
+    });
   });
 });
 
