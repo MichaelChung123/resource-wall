@@ -21,13 +21,14 @@
     <script type="text/javascript" src="/scripts/likes.js"></script>
     <script type="text/javascript" src="/scripts/resourcepage.js"></script>
     <script type="text/javascript" src="/scripts/rate.js"></script>
-
+ 
     <% include ./partial/header.ejs %>
   </head>
   <body>
     <main class="body">
       <div class="whole-container">
-        <button class="edit-resource"><a href="<%=resId%>/edit/post">Edit</a></button>
+        <button class="edit-resource"></button>
+        <!-- <a href="<%=resId%>/edit/post">Edit</a> -->
         <div class="resourceid-title"></div><hr>
         <div class="avg-rated"></div><br>
 
@@ -43,7 +44,7 @@
               </div></br>  
           </form>
     
-          <!-- <div class="row"> -->
+          <div class="row">
         <!-- <div class="col-md-12"> -->
             <form class="like-form" action="<%=resId%>/like/" method="POST">
               <div class="like-count"></div>
@@ -58,7 +59,7 @@
               <input class="rate" type="submit" id="star5" name="rating" value="5" /><label for="star5" title="Excellent">5 stars</label>
             </form>      
         <!-- </div> -->
-          <!-- </div> -->
+          </div>
         </div> 
         <p>Comments</p><hr>
           <div class="all-comments">

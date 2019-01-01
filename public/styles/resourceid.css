@@ -4,7 +4,8 @@
 .whole-container {
     position: absolute;
     margin-top: 15em;
-    width: 100%;
+    width: 60em;
+    margin-left: 18em;
 }
 
 article {
@@ -36,11 +37,6 @@ article {
     font-size: 3em;
 }
 
-
-/* .like-form {
-    float: left;
-    margin-right: 3em;
-} */
 
 h3 {
     font-weight: 500;

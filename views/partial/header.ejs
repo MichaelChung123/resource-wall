@@ -1,7 +1,5 @@
 <head>
-  <!-- Script for toggling plus button -->
-  <script type="text/javascript" src="/scripts/toggle.js"></script>
-  
+
   <!-- Font Awesome -->
   <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
   
@@ -21,25 +19,25 @@
         <a href="/"><h1 class="title">Bjük</h1></a>
       </div>
 
-            
+             
       <% if (user) { %>
         <div class='col-sm-6 login-container'>
           <button class="view-profile" type="button"><a href="/<%= username %>/profile">View profile</a></button>
           <form action="/logout" method="POST" >
             <input class="logout" type="submit" value="Log out"></p>
           </form>
-          
-            <button class='plus-button'><i class="fas fa-plus-circle"></i>&nbsp; Add</button>
+          <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle plus-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-plus-circle"></i>&nbsp; Add
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item new-posts" href="/post">Add resource</a>
+                <br>
+                <a class="dropdown-item new-posts" href="/createcollection">Add collection</a>
+              </div>
+            </div>
         </div>
-        
-        <div class='col-sm-9'>
-          <div class="row">
-            <section class="new-posts">
-              <a href="/post">Add new resource</a>
-              <a href="/createcollection">Add new collection</a>
-            </section>
-          </div>
-        </div>
+
 
       <% } else { %>
         <div class='col-sm-5 login-container'>

@@ -36,15 +36,12 @@ function createResourceElement(users) {
     </div>
     <div class='row post-footer'>
         <div class='icon-container'>
-            <i class="far fa-heart"></i>
+            <i class="index-icons fas fa-heart"></i>
 
-            <i class="far fa-comment"></i>
+            <i class="index-icons fas fa-comment"></i>
 
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            <i class="index-icons fas fa-thumbs-up"></i>
+
         </div>
     </div>
   </div>
@@ -58,8 +55,6 @@ function createResourceElement(users) {
 }
 
 function renderResources(resourcesArray) {
-  // $('.body-container').empty();
-
   $('.body-container').append(createResourceElement(resourcesArray));
 
 }

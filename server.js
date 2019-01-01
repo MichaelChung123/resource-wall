@@ -355,7 +355,7 @@ app.post("/:resourceid/rate", (req, res) => {
 
 // Edit page
 app.get("/:resourceid/edit/post", (req, res) => {
-  let result = checkUsername(req.session.userid);
+  const result = checkUsername(req.session.userid);
   const userId = req.session.userid;
   const resourceid = req.params.resourceid;
   knex('resources')
