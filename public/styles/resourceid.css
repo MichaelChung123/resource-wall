@@ -1,6 +1,7 @@
 .body {
 
 }
+
 .whole-container {
     position: absolute;
     margin-top: 15em;
@@ -8,15 +9,31 @@
     margin-left: 18em;
 }
 
+.title-container {
+    margin-left: 10em;
+    margin-right: 10em
+}
+
+.resourceid-title {
+    font-family: 'Anton', sans-serif;
+}
+
+.resource-container {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.5em;
+    margin: 0 10em
+}
+
 article {
     border: solid 1px;
     border-radius: 10px;
     margin: 10px;
     padding: 1em;
+    word-wrap: break-word;
 }
 
 .edit-resource {
-    margin: 0.5em;
+    margin-top: 1.5em;
     float: right;
     border: none;
     background-color: #4169e1;
@@ -37,7 +54,10 @@ article {
     font-size: 3em;
 }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 50c3bd2cdbfb6a9bc1645473c95ec95dc2495010
 h3 {
     font-weight: 500;
     font-size: 1.5em;
@@ -45,7 +65,15 @@ h3 {
 
 .resource-container {
     text-align: center;
+}
 
+.comment-container {
+    text-align: center;
+}
+
+.rate-container {
+    margin: 1em;
+    text-align: center;
 }
 
 .comment-container textarea {
@@ -63,6 +91,11 @@ h3 {
     height: 2.5em;
 }
 
-.resourceid-title {
-    font-family: 'Anton', sans-serif;
+.all-comments {
+    margin: 0 10em;
 }
+
+/* .created-by {
+    display: inline;
+    float: right;
+} */
