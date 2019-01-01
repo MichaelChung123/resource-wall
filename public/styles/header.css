@@ -39,6 +39,8 @@ nav#navigation {
     height: 3em;
     width: 7em;
     margin-right: 1em;
+    font-size: 1.1em;
+    font-weight: 500;
   }
   
   .plus-button {
@@ -50,7 +52,8 @@ nav#navigation {
     height: 3em;
     width: 7em;
     margin-right: 1em;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-weight: 500;
   }
 
   
@@ -83,7 +86,6 @@ nav#navigation {
     font-size: 1.2em;
     font-weight: 500;
   }
-
   
   .search-bar {
     background-color: #4169e1;
