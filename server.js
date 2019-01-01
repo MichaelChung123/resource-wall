@@ -389,24 +389,11 @@ app.get("/:resourceid/edit/post", (req, res) => {
     .select('*') 
     .where('resources.id', resourceid)
     .then((resourceResult) => {
-      console.log("This is my id: ", resourceResult[0]);
       if (resourceResult[0].user_id === userId) {
         res.render("urls_edit", templateVars);
       } else {
         res.send("This is not your post");
       }
-      // let found = r.find((e) => {
-      //   if (e.id == undefined) {
-      //     return undefined;
-      //   } else {
-      //     return e.id == resourceid
-      //   }  
-      // })
-      //   if (found == undefined) {
-      //     res.send(`this is not your post`);
-      //   } else if (found.id == resourceid) {          
-      //       res.render("urls_edit", templateVars);
-      //   }
     });
   });
 });
