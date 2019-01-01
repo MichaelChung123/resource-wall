@@ -6,22 +6,22 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
         // Inserts seed entries
         knex('users').insert({
-          name: 'neg',
+          name: 'Negar',
           username: 'neg',
           password: 'neg',
-          photo: 'https://pbs.twimg.com/profile_images/523916705253187584/h6wvQGHj_400x400.png'
+          photo: 'https://s3.amazonaws.com/lighthouse-compass2/uploads/avatar/custom_avatar/2633/thumb_IMG_8787.jpg'
         }),
         knex('users').insert({
-          name: 'michael',
+          name: 'Michael',
           username: 'michael',
           password: 'michael',
-          photo: 'https://pbs.twimg.com/profile_images/378800000328970347/40e96c650dad499b060a4f24ddc68c6e_400x400.png'
+          photo: 'https://s3.amazonaws.com/lighthouse-compass2/uploads/avatar/custom_avatar/2742/thumb_portrait.jpg'
         }),
         knex('users').insert({
-          name: 'daniel',
+          name: 'Daniel',
           username: 'daniel',
           password: 'daniel',
-          photo: 'https://pbs.twimg.com/profile_images/378800000328970347/40e96c650dad499b060a4f24ddc68c6e_400x400.png'
+          photo: 'https://s3.amazonaws.com/lighthouse-compass2/uploads/avatar/custom_avatar/2540/thumb_36A4176B-5AF6-4A7F-9F54-8CEE17C14C24.jpeg'
         })
       ]);
     });

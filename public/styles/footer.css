@@ -1,0 +1,11 @@
+#footer-container {
+    background-color: #2FC6DB;
+    color: white;
+    height: 3.8em;
+    text-align: center;
+    margin-top: 3em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    padding: 0.6em;
+    letter-spacing: 0.1em;
+  }

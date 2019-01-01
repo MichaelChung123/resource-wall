@@ -4,7 +4,6 @@ nav#navigation {
     margin-top: 0;
     background-color: white;
     z-index: 1;
-    margin-bottom: 20px;
     width: 100%;
   }
   
@@ -53,11 +52,7 @@ nav#navigation {
     margin-right: 1em;
     font-size: 1em;
   }
-  
-  .post-avatar {
-    height: 85px;
-    margin: 20px 10px 10px 10px;
-  }
+
   
   .title {
     float: left;
