@@ -7,7 +7,7 @@ module.exports = (knex) => {
 
   router.get("/", (req, res) => {
     const referer = req.headers.referer.split('=');
-    const topics = referer[1].split('+').join(' ')
+    const topics = referer[1].split('+').join(' ');
     knex
       .select("*")
       .from('resources')
