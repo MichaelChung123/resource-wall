@@ -308,13 +308,19 @@ app.get("/:resourceid", (req, res) => {
   if (req.session.userid) {
     let result = checkUsername(req.session.userid);
     result.then((username) =>{
-      let templateVars = {
-        user: req.session.userid,
-        username: username,
-        resId: req.params.resourceid,
-      };
-      res.render("urls_show_resources", templateVars);
-    })
+      knex('resources')
+      .select('*') 
+      .where('resources.id', req.params.resourceid)
+      .then((resourceResult) => {
+        let templateVars = {
+          user: req.session.userid,
+          username: username,
+          resourceOwner: resourceResult[0].user_id,
+          resId: req.params.resourceid
+        };
+          res.render("urls_show_resources", templateVars);
+      });
+    });
   } else {
     let templateVars = {
       user: req.session.userid,
