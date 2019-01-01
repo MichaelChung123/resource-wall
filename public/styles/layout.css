@@ -5,6 +5,12 @@
   margin-right: 8em;
 }
 
+.index-icons {
+  margin-top: 0.7em;
+  font-size: 1.3em;
+  color: #4169e1;
+}
+
 .post-avatar {
   height: 85px;
   margin: 20px 10px 10px 10px;

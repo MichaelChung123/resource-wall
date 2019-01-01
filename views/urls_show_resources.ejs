@@ -22,19 +22,17 @@
     <script type="text/javascript" src="/scripts/likes.js"></script>
     <script type="text/javascript" src="/scripts/resourcepage.js"></script>
     <script type="text/javascript" src="/scripts/rate.js"></script>
-
+ 
     <% include ./partial/header.ejs %>
   </head>
   <body>
     <main class="body">
       <div class="whole-container">
-        
-        <div class="title-container">
-          <button class="edit-resource"><a href="<%=resId%>/edit/post">Edit</a></button>
-          <div class="resourceid-title"></div>
-          <div class="avg-rated"></div><br><hr>
-        </div>
-        
+        <button class="edit-resource"></button>
+        <!-- <a href="<%=resId%>/edit/post">Edit</a> -->
+        <div class="resourceid-title"></div><hr>
+        <div class="avg-rated"></div><br>
+
         <div class="resource-container">  
           <div class="resourceid-topic"><h3>Topics</h3></div>
           <div class="resourceid-url"><h3>URL</h3></div><hr>
@@ -46,9 +44,9 @@
               <textarea name="rcomment" type="text"></textarea> <br><br>
               <input type="submit" value="comment"><br>
           </form>
-        </div>
-
-        <div class="rate-container">
+    
+          <div class="row">
+        <!-- <div class="col-md-12"> -->
             <form class="like-form" action="<%=resId%>/like/" method="POST">
               <div class="like-count"></div>
               <input class="button-like" type="image" src="../images/like.png" alt="Submit" height='20px' width='20px'>
@@ -58,9 +56,11 @@
               <input class="rate" type="submit" id="star5" name="rating" value="5" /><label for="star5" title="Very-bad">5 star</label> 
               <input class="rate" type="submit" id="star4" name="rating" value="4" /><label for="star4" title="Bad">4 stars</label>
               <input class="rate" type="submit" id="star3" name="rating" value="3" /><label for="star3" title="Average">3 stars</label>
-              <input class="rate" type="submit" id="star2" name="rating" value="2" /><label for="star2" title="Good">2 stars</label>
-              <input class="rate" type="submit" id="star1" name="rating" value="1" /><label for="star1" title="Excellent">1 stars</label>
-            </form>
+              <input class="rate" type="submit" id="star4" name="rating" value="4" /><label for="star4" title="Good">4 stars</label>
+              <input class="rate" type="submit" id="star5" name="rating" value="5" /><label for="star5" title="Excellent">5 stars</label>
+            </form>      
+        <!-- </div> -->
+          </div>
         </div> 
 
         <div class="all-comments">

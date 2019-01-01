@@ -243,7 +243,7 @@ app.get("/register", (req, res) => {
 
 app.post("/register", (req,res) => {
   const {Rname, Rusername, Rpassword, Rphoto} = req.body;
-  if (!Rname || !Rusername || !Rpassword || !Rphoto) {
+  if (!Rname || !Rusername || !Rpassword) {
     res.status(400).send("please fill in all the fields")
   } else {
     knex('users')
@@ -376,7 +376,7 @@ app.post("/:resourceid/rate", (req, res) => {
 
 // Edit page
 app.get("/:resourceid/edit/post", (req, res) => {
-  let result = checkUsername(req.session.userid);
+  const result = checkUsername(req.session.userid);
   const userId = req.session.userid;
   const resourceid = req.params.resourceid;
   knex('resources')
