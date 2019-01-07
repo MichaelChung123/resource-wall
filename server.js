@@ -274,7 +274,7 @@ app.get("/post", (req, res) => {
   }
 })
 
-app.post("/:username/post/resource", (req, res) => {
+app.post("/post/resource", (req, res) => {
   const userId = req.session.userid; 
   const {rurl, rtitle, rdescription, rtopic, dropdown} = req.body;
   const collectionId = knex('collections').select('id').where('name', dropdown);
