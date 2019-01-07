@@ -7,9 +7,7 @@ $(() => {
       for(let id of result) {
         $("<div>").text(id.title).appendTo($(".resourceid-title"));
         $("<div>").text(id.topic).appendTo($(".resourceid-topic"));
-        $('.goto-button').on('click', (e) => {
-          window.location.href = id.url
-        })
+        $('.website-button').append(`<a href='${id.url}'><button class="goto-button">Visit Resource</button></a>`)
       }
     });
   })
