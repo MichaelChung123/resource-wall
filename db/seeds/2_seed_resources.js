@@ -4,7 +4,6 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         knex('resources').insert({
-          id: '1',
           user_id: '1',
           url: 'https://www.tutorialspoint.com/javascript',
           title: 'javascript',
@@ -12,7 +11,6 @@ exports.seed = function(knex, Promise) {
           topic: 'javascript, beginner, web developer'
         }),
         knex('resources').insert({
-          id: '2',
           user_id: '2',
           url: 'https://www.w3schools.com/css/',
           title: 'css',
@@ -20,7 +18,6 @@ exports.seed = function(knex, Promise) {
           topic: 'css, beginner, web developer'
         }),
         knex('resources').insert({
-          id: '3',
           user_id: '3',
           url: 'https://www.w3schools.com/nodejs/nodejs_intro.asp',
           title: 'node.js',
@@ -28,7 +25,6 @@ exports.seed = function(knex, Promise) {
           topic: 'node, javascript' 
         }),
         knex('resources').insert({
-          id: '4',
           user_id: '1',
           url: 'https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0',
           title: 'functional programming',
@@ -36,7 +32,6 @@ exports.seed = function(knex, Promise) {
           topic: 'javascript, functional programming, web developer'
         }),
         knex('resources').insert({
-          id: '5',
           user_id: '2',
           url: 'https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners',
           title: 'github',
@@ -44,7 +39,6 @@ exports.seed = function(knex, Promise) {
           topic: 'github, beginner, git'
         }),
         knex('resources').insert({
-          id: '6',
           user_id: '3',
           url: 'https://www.youtube.com/watch?v=SWYqp7iY_Tc',
           title: 'git',
@@ -52,7 +46,6 @@ exports.seed = function(knex, Promise) {
           topic: 'git, vcs, beginner for git'
         }),
         knex('resources').insert({
-          id: '7',
           user_id: '1',
           url: 'https://scotch.io/tutorials/javascript-promises-for-dummies',
           title: 'Promise in Javascript',
@@ -60,7 +53,6 @@ exports.seed = function(knex, Promise) {
           topic: 'javascript, promise, callback'
         }),
         knex('resources').insert({
-          id: '8',
           user_id: '2',
           url: 'https://www.youtube.com/watch?v=FYXpOjwYzcs',
           title: 'Functional programming',
@@ -68,7 +60,6 @@ exports.seed = function(knex, Promise) {
           topic: 'functional programming, beginner, pure function'
         }),
         knex('resources').insert({
-          id: '9',
           user_id: '3',
           url: 'https://javascript.info/async',
           title: 'async await',
@@ -76,7 +67,6 @@ exports.seed = function(knex, Promise) {
           topic: 'promise, async, await'
         }),
         knex('resources').insert({
-          id: '10',
           user_id: '1',
           url: 'https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546',
           title: 'psql cheat sheet',
@@ -84,7 +74,6 @@ exports.seed = function(knex, Promise) {
           topic: 'psql, database, cheatsheet'
         }),
         knex('resources').insert({
-          id: '11',
           user_id: '2',
           url: 'https://medium.com/compass-true-north/swift-smells-17246905d1d9',
           title: 'code smell',
@@ -92,7 +81,6 @@ exports.seed = function(knex, Promise) {
           topic: 'code smell, cleancode'
         }),
         knex('resources').insert({
-          id: '12',
           user_id: '3',
           url: 'https://www.youtube.com/watch?v=568g8hxJJp4&t=534s',
           title: 'async await tutorial video',
