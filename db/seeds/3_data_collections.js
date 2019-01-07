@@ -23,6 +23,10 @@ exports.seed = function(knex, Promise) {
         knex('collections').insert({
           user_id: 3, 
           name: 'My resources'
+        }),
+        knex('collections').insert({
+          user_id: 1,
+          name: 'test'
         })
       ]);
     });
